@@ -5,7 +5,7 @@ MKS Greenfield Project
 Commit messages should be in the following format:
 
 
-    <type>(<scope>): <subject>
+    <type>: <subject>
 
     <body> (present-tense summary)
  
@@ -20,11 +20,8 @@ Commit messages should be in the following format:
 * test (adding missing tests, refactoring tests; no production code change)
 * chore (updating grunt tasks etc; no production code change)
 
-###example scope
-* init
-* runner
-* watcher
-* config
-* web-server
-* proxy
-* etc.
+###example commit message
+
+    [docs]: added an example commit message to readme
+    
+    <body>: added an example commit message to MKS greenfield project README.md file
