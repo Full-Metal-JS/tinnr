@@ -1,5 +1,5 @@
 # Full-Metal-JS
-greenfield
+MKS Greenfield Project
 
 ## Commit Messages
 Commit messages should be in the following format:
