@@ -13,7 +13,7 @@ the development branch.
 
 3. Add a remote upstream to the development branch
 
-    `git remote add upstream`
+    `git remote add upstream https://github.com/<contributor>/Full-Metal-JS.gi`
     
 4. Create a feature branch on your fork and commit changes
 
@@ -31,7 +31,7 @@ the development branch.
     
 6. If there were changes to the development branch, pull down the new commits
 
-    `git pull --rebase origin develop`
+    `git fetch upstream <branch name>`
 
 ## Commit Messages
 Commit messages should be in the following format:
