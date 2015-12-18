@@ -1,4 +1,9 @@
 {
-  "eslintConfig":{
-    
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "eslint-config-defaults": "^7.1.1",
+    "express": "^4.13.3",
+    "express-partials": "^0.3.0",
+    "morgan": "^1.6.1"
   }
+}
