@@ -32,6 +32,7 @@ the development branch.
 6. If there were changes to the development branch, pull down the new commits
 
     `git fetch upstream <branch name>`
+    `git rebase upstream/<branch name>`
 
 ## Commit Messages
 Commit messages should be in the following format:
