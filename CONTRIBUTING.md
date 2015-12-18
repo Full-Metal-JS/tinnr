@@ -31,7 +31,7 @@ the development branch.
     
 6. If there were changes to the development branch, pull down the new commits
 
-    `git pull origin develop`
+    `git pull --rebase origin develop`
 
 ## Commit Messages
 Commit messages should be in the following format:
