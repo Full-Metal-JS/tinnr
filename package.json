@@ -12,11 +12,12 @@
       "browser": true,
       "node": true
     },
-    "extends": "defaults/configurations/airbnb"
+    "extends": "airbnb-es5"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.6",
     "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^2.1.1",
+    "eslint-config-airbnb-es5": "^1.0.8",
     "eslint-plugin-react": "^3.11.3"
   }
 }
