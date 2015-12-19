@@ -1,11 +1,9 @@
-app.module('tinnr', [
+angular.module('tinnr', [
   'tinnr.browseServices',
-  'tinnr.landingServices',
   'tinnr.mealServices',
   'tinnr.meals',
   'tinnr.landing',
   'tinnr.browse',
-  'ngRoute',
   'ui.router'
 ])
 
