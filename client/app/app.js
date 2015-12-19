@@ -2,8 +2,6 @@ angular.module('tinnr', [
   'tinnr.browseServices',
   'tinnr.mealServices',
   'tinnr.meals',
-  'tinnr.landing',
-  'tinnr.browse',
   'ui.router'
 ])
 

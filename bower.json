@@ -1,0 +1,23 @@
+{
+  "name": "tinnr",
+  "description": "Tinder for food",
+  "main": "",
+  "authors": [],
+  "license": "MIT",
+  "homepage": "http://www.tinnr.com",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "angular-bootstrap": "~0.14.3",
+    "angular-ui-router": "~0.2.15"
+  }
+}
