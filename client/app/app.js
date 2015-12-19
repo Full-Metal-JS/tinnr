@@ -7,9 +7,9 @@ app.module('tinnr', [
   'tinnr.browse',
   'ngRoute',
   'ui.router'
-  ])
+])
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
@@ -28,4 +28,4 @@ app.module('tinnr', [
       url: '/browse',
       controller: 'browseController'
     });
-})
+});
