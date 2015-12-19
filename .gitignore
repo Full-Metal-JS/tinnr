@@ -3,12 +3,12 @@
 .LSOverride
 azure.err
 iisnode.yml
-node_modules/**
+node_modules
+client/lib
+
 
 # Icon must ends with two \r.
 Icon
-
-
 
 
 # Floobits
@@ -27,3 +27,4 @@ npm-debug.log*
 pids
 *.pid
 *.seed
+
