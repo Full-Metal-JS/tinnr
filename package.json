@@ -1,10 +1,15 @@
 {
   "dependencies": {
     "body-parser": "^1.14.2",
+    "browser-sync": "^2.10.1",
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^7.1.1",
     "express": "^4.13.3",
     "express-partials": "^0.3.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-sass": "^2.1.1",
     "morgan": "^1.6.1"
   },
   "eslintConfig": {

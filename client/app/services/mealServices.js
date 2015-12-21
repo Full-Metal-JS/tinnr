@@ -1,4 +1,4 @@
 angular.module('tinnr.mealServices', [])
-  .factory('Meal', function($http){
+  .factory('Meals', function($http) {
 
   });

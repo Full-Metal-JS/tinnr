@@ -1,4 +1,4 @@
 angular.module('tinnr.browseServices', [])
-  .factory('Browse', function($http){
+  .factory('Browse', function($http) {
 
   });
