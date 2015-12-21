@@ -7,9 +7,10 @@ angular.module('tinnr.browseServices', [])
         method: 'GET',
         url: '/recipes'
       })
-      .then(function (resp) {
-        return resp.data;
+      .then(function (res) {
+        return res.data;
       });
     };
-    
+
+    return {getAll: getAll};
   });
