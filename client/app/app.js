@@ -2,7 +2,8 @@ angular.module('tinnr', [
   'tinnr.browseServices',
   'tinnr.mealServices',
   'tinnr.meals',
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
