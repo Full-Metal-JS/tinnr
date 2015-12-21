@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app='tinnr'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tinnr</title>
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+        <h1>Tinnr</h1>
+        <div ng-view></div>
+    </div>
+
+    <script src="../lib/angular/angular.min.js"></script>
+    <script src="../lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./app/auth/auth.js"></script>
+    <script src="./app/browse/browse.js"></script>
+    <script src="./app/meals/meals.js"></script>
+    <script src="./app/profile/profile.js"></script>
+    <script src="./app/services/browseServices.js"></script>
+    <script src="./app/services/landingServices.js"></script>
+    <script src="./app/services/mealServices.js"></script>
+    <script src="./app/app.js"></script>
+  </body>
+</html>
