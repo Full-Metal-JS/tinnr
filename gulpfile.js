@@ -1,15 +1,16 @@
-var gulp   = require('gulp'),
-    jshint = require('gulp-jshint'),
-    sass   = require('gulp-sass'),
-    concat = require('gulp-concat'),
-    gutil = require('gulp-util'),
-    eslint = require('gulp-eslint'),
-    rimraf   = require('rimraf'),
-    sourcemaps = require('gulp-sourcemaps'),
-    nodemon   = require('gulp-nodemon'),
-    sequence = require('run-sequence'),
-    bs        = require('browser-sync'),
-    reload    = bs.reload;
+var gulp   = require('gulp');
+var jshint = require('gulp-jshint');
+var sass   = require('gulp-sass');
+var concat = require('gulp-concat');
+var gutil = require('gulp-util');
+var eslint = require('gulp-eslint');
+var rimraf   = require('rimraf');
+var sourcemaps = require('gulp-sourcemaps');
+var nodemon   = require('gulp-nodemon');
+var uglify = require('gulp-uglify');
+var sequence = require('run-sequence');
+var bs        = require('browser-sync');
+    // reload    = bs.reload;
 
 var paths = {
   // all our client app js files, not including 3rd party js files
@@ -40,7 +41,7 @@ gulp.task('build-js', function() {
   return gulp.src(paths.scripts)
     .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
-      //only uglify if gulp is ran with '--type production'
+      // only uglify if gulp is ran with '--type production'
       .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) 
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('client/build/assets/js'));
@@ -76,7 +77,7 @@ gulp.task('eslint', function() {
 });
 
 gulp.task('default', ['build'], function() {
-  //gulp.watch('client/app/**/*.js', ['jshint']);
+  // gulp.watch('client/app/**/*.js', ['jshint']);
   gulp.watch('client/app/**/*.js', ['build-js']);
   gulp.watch('client/scss/**/*.scss', ['build-css']);
 });

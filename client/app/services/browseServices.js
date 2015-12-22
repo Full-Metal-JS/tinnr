@@ -1,7 +1,6 @@
 angular.module('tinnr.browseServices', [])
   .factory('Browse', function($http) {
-
-    //Gets all recipes from the server
+    // Gets all recipes from the server
     var getAll = function () {
       return $http({
         method: 'GET',
@@ -11,6 +10,5 @@ angular.module('tinnr.browseServices', [])
         return res.data;
       });
     };
-
     return {getAll: getAll};
   });

@@ -11,6 +11,7 @@
   "eslintConfig": {
     "env": {
       "browser": 1,
+      "mocha": 1,
       "node": true
     },
     "globals": {
@@ -18,8 +19,12 @@
     },
     "extends": "airbnb-es5",
     "rules": {
-    "react/jsx-quotes": 0,
-    "jsx-quotes": [2, "prefer-double"]
+      "react/jsx-quotes": 0,
+      "jsx-quotes": [
+        2,
+        "prefer-double"
+      ],
+      "func-names": 0
     }
   },
   "devDependencies": {
@@ -36,6 +41,7 @@
     "gulp-nodemon": "^2.0.4",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.1-rc1",
     "jshint-stylish": "^2.1.0",
