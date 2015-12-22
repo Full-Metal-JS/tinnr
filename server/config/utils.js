@@ -5,7 +5,7 @@ module.exports = {
     console.error(err.stack);
     next(err);
   },
-  handleError: function (err, req, res, next) {
+  handleError: function (err, req, res) {
     res.status(500).send({error: err.message});
   },
   decode: function (req, res, next) {
