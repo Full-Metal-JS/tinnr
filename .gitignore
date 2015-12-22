@@ -26,3 +26,6 @@ pids
 # Dependency directories
 node_modules
 client/lib
+
+#Build 
+build

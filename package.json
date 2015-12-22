@@ -1,15 +1,8 @@
 {
   "dependencies": {
     "body-parser": "^1.14.2",
-    "browser-sync": "^2.10.1",
-    "eslint": "^1.10.3",
-    "eslint-config-defaults": "^7.1.1",
     "express": "^4.13.3",
     "express-partials": "^0.3.0",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^1.1.1",
-    "gulp-nodemon": "^2.0.4",
-    "gulp-sass": "^2.1.1",
     "morgan": "^1.6.1"
   },
   "eslintConfig": {
@@ -21,8 +14,20 @@
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
+    "browser-sync": "^2.10.1",
     "eslint": "^1.10.3",
     "eslint-config-airbnb-es5": "^1.0.8",
-    "eslint-plugin-react": "^3.11.3"
+    "eslint-plugin-react": "^3.11.3",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.1-rc1",
+    "jshint-stylish": "^2.1.0",
+    "rimraf": "^2.4.4",
+    "run-sequence": "^1.1.5"
   }
 }
