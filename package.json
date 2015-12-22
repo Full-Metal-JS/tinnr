@@ -4,15 +4,23 @@
     "express": "^4.13.3",
     "express-partials": "^0.3.0",
     "mocha": "^2.3.4",
+    "mongoose": "^4.3.3",
     "morgan": "^1.6.1",
     "request": "^2.67.0"
   },
   "eslintConfig": {
     "env": {
-      "browser": true,
+      "browser": 1,
       "node": true
     },
-    "extends": "airbnb-es5"
+    "globals": {
+      "angular": 1
+    },
+    "extends": "airbnb-es5",
+    "rules": {
+    "react/jsx-quotes": 0,
+    "jsx-quotes": [2, "prefer-double"]
+    }
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
@@ -23,6 +31,7 @@
     "eslint-plugin-react": "^3.11.3",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^1.1.1",
     "gulp-jshint": "^2.0.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-sass": "^2.1.1",

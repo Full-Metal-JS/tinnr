@@ -3,6 +3,7 @@ var gulp   = require('gulp'),
     sass   = require('gulp-sass'),
     concat = require('gulp-concat'),
     gutil = require('gulp-util'),
+    eslint = require('gulp-eslint'),
     rimraf   = require('rimraf'),
     sourcemaps = require('gulp-sourcemaps'),
     nodemon   = require('gulp-nodemon'),
@@ -63,6 +64,15 @@ gulp.task('serve', ['build'], function() {
 
 gulp.task('build', function(cb) {
   sequence('clean', ['build-css', 'build-js'], cb);
+});
+
+gulp.task('eslint', function() {
+  return gulp.src(['**/*.js'])
+  .pipe(eslint({
+    fix: true
+  }))
+  .pipe(eslint.format())
+  .pipe(eslint.failAfterError());
 });
 
 gulp.task('default', ['build'], function() {

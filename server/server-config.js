@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '/../client')));
 
-//Returns a object with property results containing array of recipes
+// Returns a object with property results containing array of recipes
 app.get('/recipes', function(req, res) {
   res.status(200);
   res.json(db);
