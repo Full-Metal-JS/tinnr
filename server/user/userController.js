@@ -47,8 +47,7 @@ module.exports = {
               password: password
             });
           }
-        }
-      })
+        })
       .then(function (user) {
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
