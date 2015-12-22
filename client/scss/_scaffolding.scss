@@ -9,3 +9,9 @@ body.landing {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.main {
+  border: 2px solid $brand-primary;
+  border-radius: $border-radius-large;
+  padding: 20px 30px 30px;
+}
