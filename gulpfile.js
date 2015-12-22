@@ -17,12 +17,19 @@ var paths = {
   scripts: ['client/app/**/*.js'],
   html: ['client/app/**/*.html', 'client/index.html'],
   styles: ['client/scss/**/*.scss'],
+  assets: ['client/img/**/*'],
   test: ['specs/**/*.js']
 };
 
 // Cleans the build directory
 gulp.task('clean', function(cb) {
   rimraf('./client/build', cb);
+});
+
+// Copies everything in the client folder except templates, Sass, and JS
+gulp.task('copy', function() {
+  return gulp.src(paths.assets)
+    .pipe(gulp.dest('client/build/assets/img'));
 });
 
 gulp.task('jshint', function() {
@@ -64,7 +71,7 @@ gulp.task('serve', ['build'], function() {
 });
 
 gulp.task('build', function(cb) {
-  sequence('clean', ['build-css', 'build-js'], cb);
+  sequence('clean', ['copy', 'build-css', 'build-js'], cb);
 });
 
 gulp.task('eslint', function() {

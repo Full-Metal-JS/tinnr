@@ -1,1 +1,5 @@
-angular.module('tinnr.landing', []);
+angular.module('tinnr.landing', [])
+
+.controller('LandingController', function ($scope) {
+
+});
