@@ -1,0 +1,44 @@
+<div class="container-fluid main">
+  <h1>Recipes</h1>
+  <div class="row row-flex">
+    <div class="col-sm-6 col-md-4 recipe-card">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4>Ingredients</h4></div>
+        <div class="panel-body">
+          <p>1 pound ground beef (85 percent lean) *</p>
+          <p>1 large egg, lightly beaten</p>
+          <p>1 medium yellow onion, half grated, the other half thinly sliced
+          ¼ teaspoon garlic powder</p>
+          <p>1 teaspoon kosher salt</p>
+          <p>1 teaspoon freshly ground black pepper</p>
+          <p>12 slices white bread</p>
+          <p>2 tablespoons unsalted butter, softened</p>
+          <p>12 slices American cheese, optional *</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 recipe-card">
+      <div class="thumbnail">
+        <img ng-src="{{recipes.imageUrls[0]}}" alt="{{recipes.title}}">
+        <div class="caption">
+          <h4>{{recipes.title}}</h4>
+          <p class="text-muted">Ready in: {{recipes.readyInMinutes}} mins</p>
+          <br>
+          <p class="text-center"><a href="#" class="btn btn-primary" role="button">No</a> <a href="#" class="btn btn-default" role="button">Yes</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 recipe-card">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4>Directons</h4></div>
+          <div class="panel-body">
+            <p>In a medium bowl, combine the beef, egg, grated onion, garlic powder, salt, and pepper. Mix until combined.</p>
+            <p>Form into thin patties. Spread butter on one side of each slice of bread.</p>
+            <p>Heat a large heavy skillet over medium-high heat. Cook the burgers about 3 minutes on each side. Drain on paper towels. Drain the grease from the skillet.</p>
+            <p>In the same skillet, place six slices of bread, butter side down. Top each with a slice of cheese, if desired, some onions and a burger. Top with remaining slices of cheese, if using, and bread, butter side up.</p>
+            <p>*I used 1/4 lb. of beef for each burger and medium cheddar cheese</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

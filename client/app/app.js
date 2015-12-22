@@ -1,8 +1,8 @@
 angular.module('tinnr', [
-  'tinnr.browseServices',
+  'tinnr.recipesServices',
   'tinnr.mealServices',
   'tinnr.landing',
-  'tinnr.browse',
+  'tinnr.recipes',
   'tinnr.meals',
   'ui.router',
   'ui.bootstrap'
@@ -17,16 +17,16 @@ angular.module('tinnr', [
       url: '/',
       controller: 'LandingController'
     })
+    .state('recipes', {
+      templateUrl: 'app/recipes/recipes.html',
+      url: '/recipes',
+      controller: 'RecipesController'
+    })
     .state('meals', {
       templateUrl: 'app/meals/meals.html',
       url: '/meals',
       controller: 'MealsController'
     })
-    .state('browse', {
-      templateUrl: 'app/browse/browse.html',
-      url: '/browse',
-      controller: 'BrowseController'
-    });
 })
 
 .run(function($rootScope, $state) {
