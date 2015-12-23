@@ -4,6 +4,10 @@ angular.module('tinnr.mealServices', [])
 
     meals.list = [];
 
+    meals.getAll = function(){
+    	return meals.list;
+    }
+
     meals.addMeal = function (meal) {
       meals.list.push(meal);
     };
