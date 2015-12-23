@@ -13,14 +13,13 @@ module.exports = function(app, express) {
   app.use(bodyParser.json());
   app.use(express.static(path.join(__dirname, '/../../client')));
 
-  app.use('/api/users', usersRouter);
-  app.use('/api/meals', mealsRouter);
   app.use('/api/recipes', recipesRouter);
-
-  require('../user/userRoutes.js')(usersRouter);
-  require('../recipes/recipeRoutes.js')(recipesRouter);
-  // require('../meals/mealRoutes.js')(mealsRouter);
-
   app.use(utils.logError);
   app.use(utils.handleError);
+  // app.use('/api/meals', mealsRouter);
+  // app.use('/api/users', usersRouter);
+
+  // require('../user/userRoutes.js')(usersRouter);
+  // require('../meals/mealRoutes.js')(mealsRouter);
+  require('../recipes/recipeRoutes.js')(recipesRouter);
 };
