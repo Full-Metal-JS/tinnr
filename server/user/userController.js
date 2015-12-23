@@ -75,5 +75,56 @@ module.exports = {
           next(error);
         });
     }
+  },
+  getSavedMeals: function(req, res, next) {
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('no token'));
+    } else {
+      var user = jwt.decode(token, 'secret');
+      var findUser = Q.nbind(User.findOne, User);
+      findUser({username: user.username})
+        .then(function(foundUser) {
+          if (foundUser) {
+            var mealIds = foundUser.savedRecipes;
+            res.status(200);
+            res.json(mealIds);
+          } else {
+            res.status(401).send();
+          }
+        })
+        .fail(function(error) {
+          next(error);
+        });
+    }
+  },
+  saveMeal: function(req, res, next) {
+    var token = req.headers['x-access-token'];
+    var mealId = req.body.mealId;
+
+    if (!token) {
+      next(new Error('no token'));
+    } else {
+      var user = jwt.decode(token, 'secret');
+      var findUser = Q.nbind(User.findOne, User);
+      findUser({username: user.username})
+        .then(function(foundUser) {
+          if (foundUser) {
+            foundUser.savedRecipes.push(mealId);
+            Q.ninvoke(foundUser, 'save')
+              .then(function() {
+                res.status(200).send();
+              })
+              .fail(function(error) {
+                res.status(400).send();
+              });
+          } else {
+            res.status(401).send();
+          }
+        })
+        .fail(function(error) {
+          next(error);
+        });
+    }
   }
 };
