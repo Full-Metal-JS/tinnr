@@ -1,5 +1,4 @@
 angular.module('tinnr.meals', [])
+  .controller('MealsController', function ($scope) {
 
-.controller('MealsController', function ($scope) {
-
-});
+  });
