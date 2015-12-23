@@ -17,9 +17,9 @@ module.exports = function(app, express) {
   app.use(utils.logError);
   app.use(utils.handleError);
   // app.use('/api/meals', mealsRouter);
-  // app.use('/api/users', usersRouter);
+  app.use('/api/users', usersRouter);
 
-  // require('../user/userRoutes.js')(usersRouter);
+  require('../user/userRoutes.js')(usersRouter);
   // require('../meals/mealRoutes.js')(mealsRouter);
   require('../recipes/recipeRoutes.js')(recipesRouter);
 };
