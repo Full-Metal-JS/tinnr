@@ -1,5 +1,4 @@
 angular.module('tinnr.landing', [])
+  .controller('LandingController', function ($scope) {
 
-.controller('LandingController', function ($scope) {
-
-});
+  });

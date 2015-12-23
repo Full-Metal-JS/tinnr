@@ -1,7 +1,7 @@
 <div class="container-fluid main">
   <h1>Recipes</h1>
-  <div class="row row-flex">
-    <div class="col-sm-6 col-md-4 recipe-card">
+  <div class="row row-flex" ng-repeat="recipe in recipes" ng-hide="!isCurrentRecipe($index)">
+    <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading"><h4>Ingredients</h4></div>
         <div class="panel-body">
@@ -17,18 +17,20 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-4 recipe-card">
-      <div class="thumbnail">
-        <img ng-src="{{recipes.imageUrls[0]}}" alt="{{recipes.title}}">
+    <div class="col-md-4">
+      <div class="thumbnail recipe-card">
+        <img ng-src="{{recipe.imageUrls[0]}}" alt="{{recipe.title}}">
         <div class="caption">
-          <h4>{{recipes.title}}</h4>
-          <p class="text-muted">Ready in: {{recipes.readyInMinutes}} mins</p>
-          <br>
-          <p class="text-center"><a href="#" class="btn btn-primary" role="button">No</a> <a href="#" class="btn btn-default" role="button">Yes</a></p>
+          <h4>{{recipe.title}}</h4>
+          <p class="text-muted">Ready in: {{recipe.readyInMinutes}} mins</p>
+          <p class="btns-recipe">
+            <a class="btn btn-primary" ng-click="nextRecipe()" role="button">No</a> 
+            <a class="btn btn-default" ng-click="saveRecipe()" role="button">Yes</a>
+          </p>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-4 recipe-card">
+    <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading"><h4>Directions</h4></div>
           <div class="panel-body">
