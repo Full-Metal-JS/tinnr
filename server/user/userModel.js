@@ -33,9 +33,9 @@ UserSchema.methods.checkPassword = function (password) {
 UserSchema.pre('save', function (next) {
   var user = this;
 
-  // if (!user.isModified('password')) {
-  //   return next();
-  // }
+  if (!user.isModified('password')) {
+    return next();
+  }
 
   bcrypt.genSalt(SALT, function (err, salt) {
     if (err) {

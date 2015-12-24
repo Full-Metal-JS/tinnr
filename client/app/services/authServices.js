@@ -19,9 +19,9 @@ angular.module('tinnr.authServices', [])
         url: '/api/users/signup',
         data: user
       });
-      // .then(function (resp) {
-      //   return resp.data.token;
-      // });
+      .then(function (resp) {
+        return resp.data.token;
+      });
     };
 
     auth.isAuth = function () {

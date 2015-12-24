@@ -74,9 +74,9 @@ module.exports = {
       findUser({username: user.username})
         .then(function (foundUser) {
           if (foundUser) {
-            // res.status(200).send();
+            res.status(200).send();
           } else {
-            // res.status(401).send();
+            res.status(401).send();
           }
         })
         .fail(function (error) {
