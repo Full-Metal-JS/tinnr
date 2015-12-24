@@ -33,18 +33,17 @@ UserSchema.methods.checkPassword = function (password) {
 UserSchema.pre('save', function (next) {
   var user = this;
 
-  if (!user.isModified('password')) {
-    return next();
-  }
+  // if (!user.isModified('password')) {
+  //   return next();
+  // }
 
   bcrypt.genSalt(SALT, function (err, salt) {
     if (err) {
       return next(err);
     }
-
-    bcrypt.hash(user.password, salt, null, function (error, hash) {
-      if (error) {
-        return next(error);
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) {
+        return next(err);
       }
 
       user.password = hash;
@@ -54,5 +53,4 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-var User = mongoose.model('users', UserSchema);
-module.exports = User;
+module.exports = mongoose.model('users', UserSchema);

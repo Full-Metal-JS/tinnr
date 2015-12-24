@@ -18,10 +18,10 @@ angular.module('tinnr.authServices', [])
         method: 'POST',
         url: '/api/users/signup',
         data: user
-      })
-      .then(function (resp) {
-        return resp.data.token;
       });
+      // .then(function (resp) {
+      //   return resp.data.token;
+      // });
     };
 
     auth.isAuth = function () {
