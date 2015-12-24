@@ -6,7 +6,7 @@ angular.module('tinnr.auth', [])
       Auth.signin($scope.user)
         .then(function (token) {
           $window.localStorage.setItem('com.tinnr', token);
-          $state.go('/meals');
+          $state.go('meals');
         })
         .catch(function (error) {
           console.error(error);
@@ -17,7 +17,7 @@ angular.module('tinnr.auth', [])
       Auth.signup($scope.user)
         .then(function (token) {
           $window.localStorage.setItem('com.tinnr', token);
-          $state.go('/meals');
+          $state.go('meals');
         })
         .catch(function (error) {
           console.error(error);

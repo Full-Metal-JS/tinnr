@@ -41,10 +41,9 @@ UserSchema.pre('save', function (next) {
     if (err) {
       return next(err);
     }
-
-    bcrypt.hash(user.password, salt, null, function (error, hash) {
-      if (error) {
-        return next(error);
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) {
+        return next(err);
       }
 
       user.password = hash;
@@ -54,5 +53,4 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-var User = mongoose.model('users', UserSchema);
-module.exports = User;
+module.exports = mongoose.model('users', UserSchema);
