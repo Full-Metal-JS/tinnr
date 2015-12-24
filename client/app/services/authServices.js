@@ -30,7 +30,7 @@ angular.module('tinnr.authServices', [])
 
     auth.signout = function () {
       $window.localStorage.removeItem('com.tinnr');
-      $state.go('/signin');
+      $state.go('signin');
     };
 
     return auth;
