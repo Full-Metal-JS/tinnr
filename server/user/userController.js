@@ -14,7 +14,7 @@ module.exports = {
           next(new Error('User does not exist'));
         } else {
           return user.checkPassword(password)
-            .then(function(foundUser) {
+            .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
                 res.json({token: token});
@@ -31,26 +31,34 @@ module.exports = {
   signup: function (req, res, next){
     var username = req.body.username;
     var password = req.body.password;
+
     var create;
     var newUser;
+    var hashedPassword;
 
     var findOne = Q.nbind(User.findOne, User);
 
+    // check to see if user already exists
     findOne({username: username})
       .then(function(user) {
         if (user) {
-          next(new Error('User already exists'));
+          next(new Error('User already exist!'));
         } else {
-            create = Q.nbind(User.create, User);
-            return create({
-              username: username,
-              password: password
-            });
+       
+          newUser = {
+            username: username,
+            password: password
           }
-        })
-      .then(function (user) {
-        var token = jwt.encode(user, 'secret');
+       
+          var newUser = new User(newUser);
+          return newUser.save();
+        }
+      })
+      .then(function (newUser) {
+        // create token to send back for auth
+        var token = jwt.encode(newUser, 'secret');
         res.json({token: token});
+        // next(token);
       })
       .fail(function (error) {
         next(error);
