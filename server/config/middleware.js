@@ -5,7 +5,6 @@ var utils = require('./utils.js');
 
 module.exports = function(app, express) {
   var usersRouter = express.Router();
-  var mealsRouter = express.Router();
   var recipesRouter = express.Router();
 
   app.use(morgan('dev'));
@@ -14,12 +13,13 @@ module.exports = function(app, express) {
   app.use(express.static(path.join(__dirname, '/../../client')));
 
   app.use('/api/users', usersRouter);
-  app.use('/api/meals', mealsRouter);
   app.use('/api/recipes', recipesRouter);
+  app.use('*', function(req, res) {
+    res.status(404).send('404: Page not found');
+  })
 
   require('../user/userRoutes.js')(usersRouter);
   require('../recipes/recipeRoutes.js')(recipesRouter);
-  // require('../meals/mealRoutes.js')(mealsRouter);
 
   app.use(utils.logError);
   app.use(utils.handleError);
