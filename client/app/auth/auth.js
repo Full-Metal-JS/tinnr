@@ -23,8 +23,4 @@ angular.module('tinnr.auth', [])
           console.error(error);
         });
     };
-
-    $scope.signout = function () {
-      Auth.signout($scope.user);
-    };
   });

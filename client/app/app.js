@@ -2,6 +2,7 @@ angular.module('tinnr', [
   'tinnr.authServices',
   'tinnr.recipesServices',
   'tinnr.mealServices',
+  'tinnr.navbarDirectives',
   'tinnr.auth',
   'tinnr.landing',
   'tinnr.recipes',
@@ -32,8 +33,7 @@ angular.module('tinnr', [
     .state('recipes', {
       templateUrl: 'app/recipes/recipes.html',
       url: '/recipes',
-      controller: 'RecipesController',
-      authenticate: true
+      controller: 'RecipesController'
     })
     .state('meals', {
       templateUrl: 'app/meals/meals.html',
@@ -62,7 +62,7 @@ angular.module('tinnr', [
   return attach;
 })
 
-.run(function ($rootScope, $state, $location, Auth) {
+.run(function ($rootScope, $state, Auth) {
   $rootScope.$state = $state;
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) { 
