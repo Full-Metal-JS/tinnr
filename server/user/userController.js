@@ -11,6 +11,7 @@ module.exports = {
     findUser({username: username})
       .then(function (user) {
         if (!user) {
+          res.status(401).send({error: 'User does not exist'});
           next(new Error('User does not exist'));
         } else {
           return user.checkPassword(password)
@@ -19,7 +20,8 @@ module.exports = {
                 var token = jwt.encode(user, 'secret');
                 res.json({token: token});
               } else {
-                return next(new Error('No user'));
+                res.status(401).send('User or password is incorrect');
+                next(new Error('User or password is incorrect'));
               }
             });
         }
@@ -42,14 +44,15 @@ module.exports = {
     findOne({username: username})
       .then(function(user) {
         if (user) {
+          res.status(403).send({error: 'User already exist!'});
           next(new Error('User already exist!'));
         } else {
-       
+
           newUser = {
             username: username,
             password: password
           }
-       
+
           var newUser = new User(newUser);
           return newUser.save();
         }
