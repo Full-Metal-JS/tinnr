@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app='tinnr'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tinnr</title>
+    <link rel="stylesheet" type="text/css" href="../build/assets/css/app.css" />
+  </head>
+  <body class="{{$state.current.name}}">
+    <div class="container">
+      <navbar></navbar>
+      <div ui-view></div>
+    </div>
+
+    <script src="../lib/angular/angular.min.js"></script>
+    <script src="../lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="../build/assets/js/app.js"></script>
+  </body>
+</html>

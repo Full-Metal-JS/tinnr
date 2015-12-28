@@ -1,0 +1,16 @@
+//
+// Meals
+// --------------------------------------------------
+
+.meal {
+  margin-bottom: 20px;
+  
+  .thumbnail {
+    max-width: 100%;
+    border: none;
+  }
+
+  .meal-heading {
+     font-size: $font-size-h4;
+  }
+}
