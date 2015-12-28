@@ -1,4 +1,5 @@
 var User = require('./userModel.js');
+var helper = require('../config/helper.js');
 var Q = require('q');
 var jwt = require('jwt-simple');
 
@@ -97,9 +98,10 @@ module.exports = {
       findUser({username: user.username})
         .then(function(foundUser) {
           if (foundUser) {
-            var mealIds = foundUser.savedRecipes;
+            var recipeIds = foundUser.savedRecipes;
+            var savedRecipes = helper.getSavedRecipes(recipeIds, next);
             res.status(200);
-            res.json(mealIds);
+            res.json(savedRecipes);
           } else {
             res.status(401).send();
           }
