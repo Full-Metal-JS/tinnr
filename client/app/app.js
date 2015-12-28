@@ -65,10 +65,13 @@ angular.module('tinnr', [
 .run(function ($rootScope, $state, Auth) {
   $rootScope.$state = $state;
 
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) { 
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if (toState && toState.authenticate && !Auth.isAuth()) {
       event.preventDefault();
       $state.go('signin');
+    } else if (((toState.name === 'signup') || (toState.name === 'signin')) && Auth.isAuth()) {
+      event.preventDefault();
+      $state.go('meals');  
     }
   });
 });

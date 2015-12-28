@@ -1,6 +1,7 @@
 angular.module('tinnr.auth', [])
   .controller('AuthController', function ($scope, $window, $state, Auth) {
     $scope.user = {};
+    $scope.error = null;
 
     $scope.signin = function () {
       Auth.signin($scope.user)
@@ -9,6 +10,7 @@ angular.module('tinnr.auth', [])
           $state.go('meals');
         })
         .catch(function (error) {
+          $scope.error = error;
           console.error(error);
         });
     };
@@ -20,6 +22,7 @@ angular.module('tinnr.auth', [])
           $state.go('meals');
         })
         .catch(function (error) {
+          $scope.error = error;
           console.error(error);
         });
     };
