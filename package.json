@@ -50,5 +50,8 @@
     "jshint-stylish": "^2.1.0",
     "rimraf": "^2.4.4",
     "run-sequence": "^1.1.5"
+  },
+  "engines": {
+    "node": "5.0.0"
   }
 }
