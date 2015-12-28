@@ -2,6 +2,7 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.2",
+    "bower": "^1.7.1",
     "express": "^4.13.3",
     "express-partials": "^0.3.0",
     "jwt-simple": "^0.4.0",
