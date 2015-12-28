@@ -1,6 +1,5 @@
 angular.module('tinnr.recipesServices', [])
   .factory('Recipes', function($http) {
-    // Gets all recipes from the server
     var getAll = function () {
       return $http({
         method: 'GET',
@@ -12,6 +11,9 @@ angular.module('tinnr.recipesServices', [])
         console.error('Error: ', res);
       });
     };
-    return {getAll: getAll};
+
+    return {
+      getAll: getAll
+    };
   });
 

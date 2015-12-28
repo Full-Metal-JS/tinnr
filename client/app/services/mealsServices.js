@@ -1,4 +1,4 @@
-angular.module('tinnr.mealServices', [])
+angular.module('tinnr.mealsServices', [])
   .factory('Meals', function($http) {
     var meals = {};
 
@@ -8,7 +8,7 @@ angular.module('tinnr.mealServices', [])
     	return meals.list;
     }
 
-    meals.addMeal = function (meal) {
+    meals.saveMeal = function (meal) {
       meals.list.push(meal);
     };
 
