@@ -1,6 +1,7 @@
 angular.module('tinnr.meals', [])
   .controller('MealsController', function ($scope, Meals) {
-    $scope.meals = Meals.list;
+    $scope.meals = _.chunk(Meals.list, 4);
+    $scope.offsets = 4 - (Meals.list.length % 4);
 
   	$scope.getMeals = function () {
   		Meal.getAll()
