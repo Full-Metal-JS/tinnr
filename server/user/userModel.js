@@ -14,7 +14,10 @@ var UserSchema = new mongoose.Schema({
       required: true
     },
     salt: String,
-    savedRecipes: []
+    savedRecipes: [],
+    dietPreferences: {
+      type: Object
+    }
 });
 
 UserSchema.methods.checkPassword = function (password) {

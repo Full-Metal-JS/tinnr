@@ -40,6 +40,9 @@ var RecipeSchema = new mongoose.Schema({
   rating: {
     type: Number,
     required: true
+  },
+  numberOfSaves: {
+    type: Number
   }
 });
 
