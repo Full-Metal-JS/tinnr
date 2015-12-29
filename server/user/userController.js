@@ -139,5 +139,57 @@ module.exports = {
           next(error);
         });
     }
+  },
+  saveDietPreferences: function(req, res, next) {
+    var token = req.headers['x-access-token'];
+    var dietPreferences = req.body;
+
+    if (!token) {
+      next(new Error('no token'));
+    } else {
+      var user = jwt.decode(token, 'secret');
+      var findUser = Q.nbind(User.findOne, User);
+      findUser({username: user.username})
+        .then(function(foundUser) {
+          if (foundUser) {
+            foundUser.dietPreferences = dietPreferences;
+            Q.ninvoke(foundUser, 'save')
+              .then(function() {
+                res.status(200).send();
+              })
+              .fail(function(err) {
+                res.status(400).send();
+              });
+          } else {
+            res.status(401).send();
+          }
+        })
+        .fail(function(error) {
+          next(error);
+        });
+    }
+  },
+  getDietPreferences: function(req, res, next) {
+    var token = req.headers['x-access-token'];
+
+    if (!token) {
+      next(new Error('no token'));
+    } else {
+      var user = jwt.decode(token, 'secret');
+      var findUser = Q.nbind(User.findOne, User);
+      findUser({username: user.username})
+        .then(function(foundUser) {
+          if (foundUser) {
+            var dietPreferences = foundUser.dietPreferences;
+            res.status(200);
+            res.json(dietPreferences);
+          } else {
+            res.status(401).send();
+          }
+        })
+        .fail(function(error) {
+          next(error);
+        });
+    }
   }
 };
