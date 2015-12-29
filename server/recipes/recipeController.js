@@ -42,7 +42,6 @@ module.exports = {
           recipe.numberOfSaves++;
           next();
         } else {
-          req.body[numberOfSaves] = 1;
           var newRecipe = new Recipe(req.body);
           return newRecipe.save();
         }

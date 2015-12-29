@@ -42,7 +42,8 @@ var RecipeSchema = new mongoose.Schema({
     required: true
   },
   numberOfSaves: {
-    type: Number
+    type: Number,
+    default: 1
   }
 });
 
