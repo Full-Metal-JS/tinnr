@@ -1,7 +1,7 @@
 var db = require('../data.js');
 var Recipe = require('./recipeModel.js');
 var request = require('request');
-var Q = require('Q');
+var Q = require('q');
 
 module.exports = {
   getAll: function(req, res) {
@@ -40,7 +40,7 @@ module.exports = {
         // to keep track of popularity
         if (recipe) {
           recipe.numberOfSaves++;
-          next();
+          recipe.save();
         } else {
           var newRecipe = new Recipe(req.body);
           return newRecipe.save();
