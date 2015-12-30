@@ -1,4 +1,4 @@
-angular.module('tinnr.userServices', [])
+angular.module('tinnr.usersServices', [])
   .factory('User', ['$http', function($http) {
     var user = {};
 
@@ -9,7 +9,7 @@ angular.module('tinnr.userServices', [])
     user.savePreferences = function () {
       return $http({
         method: 'POST',
-        url: '/api/user/preferences',
+        url: '/api/users/preferences',
         data: user.data
       })
       .then(function (res) {
