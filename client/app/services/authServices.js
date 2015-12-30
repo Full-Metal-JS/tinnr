@@ -9,7 +9,7 @@ angular.module('tinnr.authServices', [])
         data: user
       })
       .then(function (res) {
-        return res.data.token;
+        return res.data;
       });
     };
 
