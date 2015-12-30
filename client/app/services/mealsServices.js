@@ -34,7 +34,6 @@ angular.module('tinnr.mealsServices', [])
     };
 
     meals.saveMeal = function (meal) {
-      
       console.log(meal.id)
       
       $http({

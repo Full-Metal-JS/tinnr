@@ -17,8 +17,9 @@ angular.module('tinnr.meals', [])
       console.log("get meals is happening")
       Meals.getSavedMeals()
         .then(function (data){
-          console.log("data is coming",data)
+          console.dir(data.data)
           $scope.meals = data;
+          console.dir($scope.meals)
         })
         .catch(function (error){
           console.log('Error fetching meals', error);

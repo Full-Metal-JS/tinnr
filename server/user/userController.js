@@ -105,7 +105,6 @@ module.exports = {
         .then(function(foundUser) {
           if (foundUser) {
             var recipeIds = foundUser.savedRecipes;
-            console.log('These are the saved recipes ',recipeIds)
             //var savedRecipes = helper.getSavedRecipes(recipeIds, next);
             res.status(200);
             res.json(recipeIds);
@@ -130,10 +129,10 @@ module.exports = {
       findUser({username: user.username})
         .then(function(foundUser) {
           if (foundUser) {
-            if(foundUser.savedRecipes.indexOf(mealId) === -1){
-              
+            
+
               foundUser.savedRecipes.push(mealId);
-            }
+            
             
             Q.ninvoke(foundUser, 'save')
               .then(function() {
