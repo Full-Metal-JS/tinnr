@@ -22,7 +22,7 @@ module.exports = {
                 res.json({
                   username: user.username,
                   token: token,
-                  dietPreferences: user.dietPreferences
+                  preferences: user.dietPreferences
                 });
               } else {
                 res.status(401).send('User or password is incorrect');
