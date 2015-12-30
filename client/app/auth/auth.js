@@ -5,10 +5,9 @@ angular.module('tinnr.auth', [])
 
     $scope.signin = function () {
       Auth.signin($scope.user)
-        .then(function (token) { // TODO: return user object not just token
-          // User.data = user;
-          $window.localStorage.setItem('com.tinnr', token);
-          //$window.localStorage.setItem('com.tinnr', user.token);
+        .then(function (user) { 
+          User.data = user;
+          $window.localStorage.setItem('com.tinnr', user.token);
           $state.go('meals');
         })
         .catch(function (error) {
