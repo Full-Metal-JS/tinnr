@@ -2,7 +2,7 @@ var recipeController = require('./recipeController.js');
 
 module.exports = function(app) {
   app.get('/', recipeController.getAll);
-  app.get('/recipes', recipeController.getAll);
-  app.post('/recipes', recipeController.saveRecipe);
+  app.get('/yummly', recipeController.getYummlyData);
+  app.post('/save', recipeController.saveRecipe);
 
 };
