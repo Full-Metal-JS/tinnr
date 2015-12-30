@@ -6,7 +6,7 @@ var Q = require('q');
 module.exports = {
   getAll: function(req, res) {
     res.status(200);
-    res.json(db.matches);
+    res.json(db);
   },
   getYummlyData: function(req, res, next) {
     // insert api id and api password
