@@ -128,7 +128,7 @@ module.exports = {
       var findUser = Q.nbind(User.findOne, User);
       findUser({username: user.username})
         .then(function(foundUser) {
-          if (foundUser) {
+          if (foundUser && foundUser.savedRecipes.indexOf(mealId) === -1) {
             foundUser.savedRecipes.push(mealId);
             Q.ninvoke(foundUser, 'save')
               .then(function() {
