@@ -10,8 +10,8 @@ module.exports = {
   },
   getYummlyData: function(req, res, next) {
     // insert api id and api password
-    var apiId = 'aca21f0d';
-    var apiPW = '54f02d95d4b66adc893bb036c3165e3f';
+    var apiId = '';
+    var apiPW = '';
     var searchParams = req.body;
     var searchString = '';
 
