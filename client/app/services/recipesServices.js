@@ -1,5 +1,5 @@
 angular.module('tinnr.recipesServices', [])
-  .factory('Recipes', function($http) {
+  .factory('Recipes', ['$http', function($http) {
     var getAll = function () {
       return $http({
         method: 'GET',
@@ -15,5 +15,5 @@ angular.module('tinnr.recipesServices', [])
     return {
       getAll: getAll
     };
-  });
+  }]);
 
