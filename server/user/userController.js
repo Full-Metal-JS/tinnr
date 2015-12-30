@@ -19,11 +19,10 @@ module.exports = {
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                var dietPreferences = user.dietPreferences;
-                console.log(user);
                 res.json({
+                  username: user.username,
                   token: token,
-                  dietPreferences: dietPreferences
+                  dietPreferences: user.dietPreferences
                 });
               } else {
                 res.status(401).send('User or password is incorrect');
@@ -39,6 +38,7 @@ module.exports = {
   signup: function (req, res, next){
     var username = req.body.username;
     var password = req.body.password;
+    var dietPreferences = req.body.preferences;
 
     var create;
     var newUser;
@@ -56,7 +56,8 @@ module.exports = {
 
           newUser = {
             username: username,
-            password: password
+            password: password,
+            dietPreferences: dietPreferences
           }
 
           var newUser = new User(newUser);

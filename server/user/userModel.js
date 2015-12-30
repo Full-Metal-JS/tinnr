@@ -16,7 +16,8 @@ var UserSchema = new mongoose.Schema({
     salt: String,
     savedRecipes: [],
     dietPreferences: {
-      type: Object
+      type: Object,
+      default: {}
     }
 });
 
