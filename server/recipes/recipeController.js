@@ -1,4 +1,5 @@
 var db = require('../data.js');
+var search = require('../search.js');
 var Recipe = require('./recipeModel.js');
 var request = require('request');
 var Q = require('q');
@@ -15,10 +16,13 @@ module.exports = {
     var searchParams = req.body;
     var searchString = '';
 
+    // creates api parameter string
     for (key in searchParams) {
-      if (searchParams[key]){
-        searchString += searchParams[key];
-      }
+      searchParams[key].forEach(function(val) {
+        if (val.name === searchParams[key]){
+          searchString += ('&' + 'allowed' + key.charAt(0).toUpperCase() + key.slice(1) + '[]=' + val.searchValue);
+        }
+      })
     }
 
     var apiUrl = 'http://api.yummly.com/v1/api/recipes?_app_id' + apiId + '&_app_key=' + apiPW + searchString + '&requirePictures=true';
