@@ -19,7 +19,12 @@ module.exports = {
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                res.json({token: token});
+                var dietPreferences = user.dietPreferences.preferences;
+                console.log(user);
+                res.json({
+                  token: token,
+                  dietPreferences: dietPreferences
+                });
               } else {
                 res.status(401).send('User or password is incorrect');
                 next(new Error('User or password is incorrect'));
@@ -142,7 +147,7 @@ module.exports = {
   },
   saveDietPreferences: function(req, res, next) {
     var token = req.headers['x-access-token'];
-    var dietPreferences = req.body;
+    var dietPreferences = req.body.preferences;
 
     if (!token) {
       next(new Error('no token'));
