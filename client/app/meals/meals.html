@@ -1,4 +1,4 @@
-<div class="container-fluid main">
+<div class="container-fluid main" ng-init='getMealsServer()'>
   <h1>My Meals</h1>
     <div class="row row-flex" ng-repeat="row in meals">
         <div class="col-xs-6 col-md-3 meal" ng-repeat="meal in row">
