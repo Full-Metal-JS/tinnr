@@ -1,8 +1,6 @@
 angular.module('tinnr.authServices', [])
-  .factory('Auth', function ($http, $state, $window) {
+  .factory('Auth', ['$http', '$state', '$window', 'User', function ($http, $state, $window, User) {
     var auth = {};
-
-    auth.currentUser = {};
 
     auth.signin = function (user) {
       return $http({
@@ -10,11 +8,8 @@ angular.module('tinnr.authServices', [])
         url: '/api/users/signin',
         data: user
       })
-      .then(function (resp) {
-        if (resp.data.token) {
-          auth.setCurrentUser(user.username, resp.data.token);
-        }
-        return resp.data.token;
+      .then(function (res) {
+        return res.data.token;
       });
     };
 
@@ -24,17 +19,9 @@ angular.module('tinnr.authServices', [])
         url: '/api/users/signup',
         data: user
       })
-      .then(function (resp) {
-        if (resp.data.token) {
-          auth.setCurrentUser(user.username, resp.data.token);
-        }
-        return resp.data.token;
+      .then(function (res) {
+        return res.data.token;
       });
-    };
-
-    auth.setCurrentUser = function (username, token) {
-      auth.currentUser.username = username;
-      auth.currentUser.token = token;  
     };
 
     auth.isAuth = function () {
@@ -42,10 +29,10 @@ angular.module('tinnr.authServices', [])
     };
 
     auth.signout = function () {
-      auth.currentUser = {};
+      User.clearUser();
       $window.localStorage.removeItem('com.tinnr');
       $state.go('signin');
     };
 
     return auth;
-  });
+  }]);
