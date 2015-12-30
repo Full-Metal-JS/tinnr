@@ -1,6 +1,8 @@
 angular.module('tinnr.recipesServices', [])
   .factory('Recipes', ['$http', function($http) {
-    var getAll = function () {
+    var recipes = {};
+
+    recipes.getAll = function () {
       return $http({
         method: 'GET',
         url: '/api/recipes'
@@ -12,8 +14,6 @@ angular.module('tinnr.recipesServices', [])
       });
     };
 
-    return {
-      getAll: getAll
-    };
+    return recipes;
   }]);
 

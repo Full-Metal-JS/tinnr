@@ -8,8 +8,8 @@ angular.module('tinnr.authServices', [])
         url: '/api/users/signin',
         data: user
       })
-      .then(function (resp) {
-        return resp.data.token;
+      .then(function (res) {
+        return res.data.token;
       });
     };
 
@@ -19,8 +19,8 @@ angular.module('tinnr.authServices', [])
         url: '/api/users/signup',
         data: user
       })
-      .then(function (resp) {
-        return resp.data.token;
+      .then(function (res) {
+        return res.data.token;
       });
     };
 

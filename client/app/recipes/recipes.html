@@ -5,13 +5,14 @@
       <div class="panel panel-default">
         <div class="panel-heading"><h4>Preferences</h4></div>
         <div class="panel-body">
-          <form name="preferencesForm">
+          <form class="form-preferences">
             <div class="form-group">
               <label for="allowedDiet">Diet</label>
               <select id="allowedDiet" 
                       class="form-control" 
                       ng-options="diet for diet in attributes['allowedDiet[]']" 
-                      ng-model="preferences.diet">
+                      ng-model="preferences.diet"
+                      ng-change="show()">
                 <option value="">All</option>
               </select>
             </div>
@@ -33,6 +34,12 @@
                 <option value="">All</option>
               </select>
             </div>
+          </form>
+          <button type="button" 
+                  class="btn btn-info" 
+                  ng-show="isLoggedIn()" 
+                  ng-click="savePreferences()">Save
+          </button>
         </div>
       </div>
     </div>

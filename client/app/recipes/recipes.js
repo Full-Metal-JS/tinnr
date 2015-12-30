@@ -1,9 +1,10 @@
 angular.module('tinnr.recipes', [])
-  .controller('RecipesController', ['$scope', 'Recipes', 'Meals', 'User', function ($scope, Recipes, Meals, User) {
+  .controller('RecipesController', ['$scope', 'Recipes', 'Meals', 'Auth', 'User', function ($scope, Recipes, Meals, Auth, User) {
     $scope.currentIndex = 0;
     $scope.recipes = [];
     $scope.attributes = [];
-    $scope.preferences = User.preferences;
+    $scope.preferences = User.data.preferences;
+    $scope.isLoggedIn = Auth.isAuth;
 
     $scope.getRecipes = function () {
       Recipes.getAll()
@@ -27,6 +28,16 @@ angular.module('tinnr.recipes', [])
     $scope.saveRecipe = function () {
       Meals.saveMeal($scope.recipes[$scope.currentIndex]);
       $scope.nextRecipe();
+    };
+
+    $scope.savePreferences = function () {
+      User.savePreferences()
+        .then(function (data) {
+          console.log('User preferences saved');
+        })
+        .catch(function (error) {
+          console.error('Error saving preferences: ', error);  
+        });
     };
 
     $scope.getRecipes();
