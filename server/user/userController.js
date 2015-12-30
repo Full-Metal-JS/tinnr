@@ -119,7 +119,7 @@ module.exports = {
   },
   saveMeal: function(req, res, next) {
     var token = req.headers['x-access-token'];
-    var mealId = req.body.mealId;
+    var mealId = req.body;
 
     if (!token) {
       next(new Error('no token'));

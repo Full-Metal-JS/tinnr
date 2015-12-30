@@ -28,8 +28,10 @@ angular.module('tinnr.recipes', [])
 
     $scope.saveRecipe = function () {
       Meals.saveMeal($scope.recipes[$scope.currentIndex]);
+      Meals.saveRecipe($scope.recipes[$scope.currentIndex])
       $scope.nextRecipe();
     };
+    
 
     $scope.savePreferences = function () {
       User.savePreferences()
