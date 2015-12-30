@@ -19,7 +19,7 @@ module.exports = {
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                var dietPreferences = user.dietPreferences.preferences;
+                var dietPreferences = user.dietPreferences;
                 console.log(user);
                 res.json({
                   token: token,
