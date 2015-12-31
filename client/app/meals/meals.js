@@ -17,6 +17,7 @@ angular.module('tinnr.meals', [])
       console.log("get meals is happening")
       Meals.getSavedMeals()
         .then(function (data){
+          
           console.log("data is coming",data)
           $scope.meals = data.data;
         })
