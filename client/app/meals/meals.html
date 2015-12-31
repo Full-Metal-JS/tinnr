@@ -3,7 +3,7 @@
     <div class="row row-flex" ng-repeat="row in meals">
         <div class="col-xs-6 col-md-3 meal" >
             <div class="thumbnail">
-                <img ng-src="{{row.imageUrlsBySize[90]}}" alt="{{meal.recipeName}}">
+                <img ng-src="{{row.imageUrlsBySize[90]}}" alt="{{row.recipeName}}">
                 <div class="caption">
                     
                     <h4>{{row.recipeName}}</h4>
@@ -19,6 +19,7 @@
             </div>
         </div>
         <div class="col-xs-6 col-md-offset-{{offsets}}" ng-if="$index < (cols - 1)"></div>
+        
     </div>
     <div class="row" ng-show="meals.length === 0">
         <div class="alert alert-info" role="alert">Select some recipes to get started.</div>
