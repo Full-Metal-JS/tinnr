@@ -14,7 +14,7 @@ angular.module('tinnr.mealsServices', [])
       })
       .then(function (res) {
 
-        return res.data;
+        return res;
       }, function (res) {
         console.error('Error: ', res);
       });
