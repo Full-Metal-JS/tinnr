@@ -105,9 +105,10 @@ module.exports = {
         .then(function(foundUser) {
           if (foundUser) {
             var recipeIds = foundUser.savedRecipes;
-            var savedRecipes = helper.getSavedRecipes(recipeIds, next);
+            console.log('These are the saved recipes ',recipeIds)
+            //var savedRecipes = helper.getSavedRecipes(recipeIds, next);
             res.status(200);
-            res.json(savedRecipes);
+            res.json(recipeIds);
           } else {
             res.status(401).send();
           }
@@ -119,7 +120,7 @@ module.exports = {
   },
   saveMeal: function(req, res, next) {
     var token = req.headers['x-access-token'];
-    var mealId = req.body.mealId;
+    var mealId = req.body;
 
     if (!token) {
       next(new Error('no token'));
@@ -128,8 +129,12 @@ module.exports = {
       var findUser = Q.nbind(User.findOne, User);
       findUser({username: user.username})
         .then(function(foundUser) {
+
           if (foundUser && foundUser.savedRecipes.indexOf(mealId) === -1) {
             foundUser.savedRecipes.push(mealId);
+
+          
+          
             Q.ninvoke(foundUser, 'save')
               .then(function() {
                 res.status(200).send();

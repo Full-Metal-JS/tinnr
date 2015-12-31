@@ -1,16 +1,25 @@
-<div class="container-fluid main">
+<div class="container-fluid main" ng-init='getMealsServer()'>
   <h1>My Meals</h1>
     <div class="row row-flex" ng-repeat="row in meals">
-        <div class="col-xs-6 col-md-3 meal" ng-repeat="meal in row">
+        <div class="col-xs-6 col-md-3 meal" >
             <div class="thumbnail">
-                <img ng-src="{{meal.imageUrlsBySize[90]}}" alt="{{meal.recipeName}}">
+                <img ng-src="{{row.imageUrlsBySize[90]}}" alt="{{row.recipeName}}">
                 <div class="caption">
-                    <h4>{{meal.recipeName}}</h4>
-                    <p class="text-muted">Ready in: {{meal.totalTimeInSeconds / 60}} mins</p>
+                    
+                    <h4>{{row.recipeName}}</h4>
+                    <p> </p>
+                    <p class="text-muted">Ready in: {{row.totalTimeInSeconds / 60}} mins</p>
+                </div>
+                <div class ="ingredients">
+                    <h5>Ingredients </h5>
+                    <li ng-repeat="ingredient in row.ingredients">
+                        <p>{{ingredient}}</p>
+                    </li>
                 </div>
             </div>
         </div>
         <div class="col-xs-6 col-md-offset-{{offsets}}" ng-if="$index < (cols - 1)"></div>
+        
     </div>
     <div class="row" ng-show="meals.length === 0">
         <div class="alert alert-info" role="alert">Select some recipes to get started.</div>
