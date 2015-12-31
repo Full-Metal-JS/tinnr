@@ -28,10 +28,9 @@ angular.module('tinnr.recipes', [])
 
     $scope.saveRecipe = function () {
       Meals.saveMeal($scope.recipes[$scope.currentIndex]);
-      Meals.saveRecipe($scope.recipes[$scope.currentIndex])
+      Recipes.saveRecipe($scope.recipes[$scope.currentIndex]);
       $scope.nextRecipe();
     };
-    
 
     $scope.savePreferences = function () {
       User.savePreferences()
@@ -45,8 +44,8 @@ angular.module('tinnr.recipes', [])
     };
 
     $scope.closeAlert = function(index) {
-    $scope.alerts.splice(index, 1);
-  };
+      $scope.alerts.splice(index, 1);
+    };
 
     $scope.getRecipes();
   }]);

@@ -104,11 +104,10 @@ module.exports = {
       findUser({username: user.username})
         .then(function(foundUser) {
           if (foundUser) {
-            var recipeIds = foundUser.savedRecipes;
-            console.log('These are the saved recipes ',recipeIds)
+            var recipes = foundUser.savedRecipes;
             //var savedRecipes = helper.getSavedRecipes(recipeIds, next);
             res.status(200);
-            res.json(recipeIds);
+            res.json(recipes);
           } else {
             res.status(401).send();
           }
