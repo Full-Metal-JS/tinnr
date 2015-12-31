@@ -6,4 +6,6 @@ module.exports = function(app) {
   app.post('/signedin', userController.checkAuth);
   app.get('/meals', userController.getSavedMeals);
   app.post('/meals', userController.saveMeal);
+  app.post('/preferences', userController.saveDietPreferences);
+  app.get('/preferences', userController.getDietPreferences);
 };

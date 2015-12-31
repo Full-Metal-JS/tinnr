@@ -2,12 +2,6 @@
 // Forms
 // --------------------------------------------------
 
-.form-auth {
-  max-width: 330px;
-  padding: 30px 15px 40px;
-  margin: 0 auto;
-}
-
 .form-control.ng-invalid.ng-dirty { 
   color: $state-danger-text;
   border-color: $state-danger-text;
@@ -18,4 +12,15 @@
     @include box-shadow($shadow);
   }
 }
+
+.form-auth {
+  max-width: 330px;
+  padding: 30px 15px 40px;
+  margin: 0 auto;
+}
+
+.form-preferences {
+  margin-bottom: 30px;
+}
+
 

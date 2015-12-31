@@ -1,4 +1,5 @@
 var User = require('./userModel.js');
+var helper = require('../config/helper.js');
 var Q = require('q');
 var jwt = require('jwt-simple');
 
@@ -18,7 +19,11 @@ module.exports = {
             .then(function (foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                res.json({token: token});
+                res.json({
+                  username: user.username,
+                  token: token,
+                  preferences: user.dietPreferences
+                });
               } else {
                 res.status(401).send('User or password is incorrect');
                 next(new Error('User or password is incorrect'));
@@ -33,6 +38,7 @@ module.exports = {
   signup: function (req, res, next){
     var username = req.body.username;
     var password = req.body.password;
+    var dietPreferences = req.body.preferences;
 
     var create;
     var newUser;
@@ -50,7 +56,8 @@ module.exports = {
 
           newUser = {
             username: username,
-            password: password
+            password: password,
+            dietPreferences: dietPreferences
           }
 
           var newUser = new User(newUser);
@@ -97,9 +104,10 @@ module.exports = {
       findUser({username: user.username})
         .then(function(foundUser) {
           if (foundUser) {
-            var mealIds = foundUser.savedRecipes;
+            var recipeIds = foundUser.savedRecipes;
+            //var savedRecipes = helper.getSavedRecipes(recipeIds, next);
             res.status(200);
-            res.json(mealIds);
+            res.json(recipeIds);
           } else {
             res.status(401).send();
           }
@@ -111,7 +119,7 @@ module.exports = {
   },
   saveMeal: function(req, res, next) {
     var token = req.headers['x-access-token'];
-    var mealId = req.body.mealId;
+    var mealId = req.body;
 
     if (!token) {
       next(new Error('no token'));
@@ -121,7 +129,11 @@ module.exports = {
       findUser({username: user.username})
         .then(function(foundUser) {
           if (foundUser) {
-            foundUser.savedRecipes.push(mealId);
+            
+
+              foundUser.savedRecipes.push(mealId);
+            
+            
             Q.ninvoke(foundUser, 'save')
               .then(function() {
                 res.status(200).send();
@@ -129,6 +141,58 @@ module.exports = {
               .fail(function(error) {
                 res.status(400).send();
               });
+          } else {
+            res.status(401).send();
+          }
+        })
+        .fail(function(error) {
+          next(error);
+        });
+    }
+  },
+  saveDietPreferences: function(req, res, next) {
+    var token = req.headers['x-access-token'];
+    var dietPreferences = req.body.preferences;
+
+    if (!token) {
+      next(new Error('no token'));
+    } else {
+      var user = jwt.decode(token, 'secret');
+      var findUser = Q.nbind(User.findOne, User);
+      findUser({username: user.username})
+        .then(function(foundUser) {
+          if (foundUser) {
+            foundUser.dietPreferences = dietPreferences;
+            Q.ninvoke(foundUser, 'save')
+              .then(function() {
+                res.status(200).send();
+              })
+              .fail(function(err) {
+                res.status(400).send();
+              });
+          } else {
+            res.status(401).send();
+          }
+        })
+        .fail(function(error) {
+          next(error);
+        });
+    }
+  },
+  getDietPreferences: function(req, res, next) {
+    var token = req.headers['x-access-token'];
+
+    if (!token) {
+      next(new Error('no token'));
+    } else {
+      var user = jwt.decode(token, 'secret');
+      var findUser = Q.nbind(User.findOne, User);
+      findUser({username: user.username})
+        .then(function(foundUser) {
+          if (foundUser) {
+            var dietPreferences = foundUser.dietPreferences;
+            res.status(200);
+            res.json(dietPreferences);
           } else {
             res.status(401).send();
           }

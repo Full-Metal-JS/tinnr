@@ -1,12 +1,13 @@
 angular.module('tinnr.auth', [])
-  .controller('AuthController', function ($scope, $window, $state, Auth) {
-    $scope.user = {};
+  .controller('AuthController', ['$scope', '$window', '$state', 'Auth', 'User', function ($scope, $window, $state, Auth, User) {
+    $scope.user = User.data;
     $scope.error = null;
 
     $scope.signin = function () {
       Auth.signin($scope.user)
-        .then(function (token) {
-          $window.localStorage.setItem('com.tinnr', token);
+        .then(function (user) { 
+          User.data = user;
+          $window.localStorage.setItem('com.tinnr', user.token);
           $state.go('meals');
         })
         .catch(function (error) {
@@ -18,6 +19,7 @@ angular.module('tinnr.auth', [])
     $scope.signup = function () {
       Auth.signup($scope.user)
         .then(function (token) {
+          User.data.password = undefined;
           $window.localStorage.setItem('com.tinnr', token);
           $state.go('meals');
         })
@@ -26,4 +28,4 @@ angular.module('tinnr.auth', [])
           console.error(error);
         });
     };
-  });
+  }]);

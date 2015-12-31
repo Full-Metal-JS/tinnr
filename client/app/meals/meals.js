@@ -1,6 +1,8 @@
 angular.module('tinnr.meals', [])
-  .controller('MealsController', function ($scope, Meals) {
-    $scope.meals = Meals.list;
+  .controller('MealsController', ['$scope', 'Meals', function ($scope, Meals) {
+    $scope.cols = 4;
+    $scope.meals = _.chunk(Meals.list, $scope.cols);
+    $scope.offsets = $scope.cols - (Meals.list.length % $scope.cols);
 
   	$scope.getMeals = function () {
   		Meal.getAll()
@@ -11,4 +13,16 @@ angular.module('tinnr.meals', [])
   				console.error('Error fetching meals: ', error);
   			});
   	}
-  });
+    $scope.getMealsServer = function(){
+      console.log("get meals is happening")
+      Meals.getSavedMeals()
+        .then(function (data){
+          console.log("this is data ",data.data)
+          $scope.meals = data.data;
+          console.dir($scope.meals)
+        })
+        .catch(function (error){
+          console.log('Error fetching meals', error);
+        });
+    }
+  }]);

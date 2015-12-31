@@ -1,5 +1,6 @@
 angular.module('tinnr', [
   'tinnr.authServices',
+  'tinnr.usersServices',
   'tinnr.recipesServices',
   'tinnr.mealsServices',
   'tinnr.navbarDirectives',

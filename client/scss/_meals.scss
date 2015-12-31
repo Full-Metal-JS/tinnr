@@ -2,15 +2,21 @@
 // Meals
 // --------------------------------------------------
 
+
+
+
 .meal {
   margin-bottom: 20px;
   
   .thumbnail {
-    max-width: 100%;
-    border: none;
-  }
+    img {
+      width: 246.5px;
+    }
 
-  .meal-heading {
-     font-size: $font-size-h4;
+    .caption {
+      h4 {
+        margin-bottom: 5px;
+      }
+    }
   }
 }
