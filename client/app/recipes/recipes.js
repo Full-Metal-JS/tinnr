@@ -27,8 +27,11 @@ angular.module('tinnr.recipes', [])
     };
 
     $scope.saveRecipe = function () {
-      Meals.saveMeal($scope.recipes[$scope.currentIndex]);
-      Recipes.saveRecipe($scope.recipes[$scope.currentIndex]);
+      if (Auth.isAuth()) {
+        Meals.saveMeal($scope.recipes[$scope.currentIndex]);
+        Recipes.saveRecipe($scope.recipes[$scope.currentIndex]);
+      }
+      
       $scope.nextRecipe();
     };
 
