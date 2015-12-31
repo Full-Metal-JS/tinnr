@@ -1,8 +1,8 @@
 angular.module('tinnr.meals', [])
   .controller('MealsController', ['$scope', 'Meals', function ($scope, Meals) {
     $scope.cols = 4;
-    $scope.meals = _.chunk(Meals.list, $scope.cols);
-    $scope.offsets = $scope.cols - (Meals.list.length % $scope.cols);
+    $scope.meals = [];
+    $scope.offsets = $scope.cols - ($scope.meals.length % $scope.cols);
 
   	$scope.getMeals = function () {
   		Meal.getAll()
@@ -19,10 +19,12 @@ angular.module('tinnr.meals', [])
         .then(function (data){
           
           console.log("data is coming",data)
-          $scope.meals = data.data;
+          $scope.meals = _.chunk(data.data, $scope.cols);
         })
         .catch(function (error){
           console.log('Error fetching meals', error);
         });
     }
+
+    $scope.getMealsServer();
   }]);
