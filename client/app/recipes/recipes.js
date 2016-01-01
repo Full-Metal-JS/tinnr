@@ -2,16 +2,14 @@ angular.module('tinnr.recipes', [])
   .controller('RecipesController', ['$scope', 'Recipes', 'Meals', 'Auth', 'User', function ($scope, Recipes, Meals, Auth, User) {
     $scope.currentIndex = 0;
     $scope.recipes = [];
-    $scope.attributes = [];
     $scope.preferences = User.data.preferences;
     $scope.isLoggedIn = Auth.isAuth;
     $scope.alerts = [];
 
-    $scope.getRecipes = function () {
-      Recipes.getAll()
+    $scope.getRecipes = function (params) {
+      Recipes.getRecipes(params)
         .then(function (data) {
-          $scope.recipes = data.matches;
-          $scope.attributes = data.attributes;
+          $scope.recipes = JSON.parse(data).matches;
         })
         .catch(function (error) {
           console.error('Error fetching recipes: ', error);  
@@ -46,9 +44,9 @@ angular.module('tinnr.recipes', [])
         });
     };
 
-    $scope.closeAlert = function(index) {
+    $scope.closeAlert = function (index) {
       $scope.alerts.splice(index, 1);
     };
 
-    $scope.getRecipes();
+    $scope.getRecipes($scope.preferences);
   }]);
