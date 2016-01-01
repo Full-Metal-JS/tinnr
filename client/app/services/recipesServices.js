@@ -2,10 +2,11 @@ angular.module('tinnr.recipesServices', [])
   .factory('Recipes', ['$http', function($http) {
     var recipes = {};
 
-    recipes.getAll = function () {
+    recipes.getRecipes = function (params) {
       return $http({
         method: 'GET',
-        url: '/api/recipes'
+        url: '/api/recipes',
+        params: params
       })
       .then(function (res) {
         return res.data;

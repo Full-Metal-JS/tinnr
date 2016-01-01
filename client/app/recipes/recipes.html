@@ -7,7 +7,7 @@
   <h1>Recipes</h1>
   <div class="row row-flex recipe" ng-repeat="recipe in recipes" ng-hide="!isCurrentRecipe($index)">
     <div class="col-md-4">
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-preferences">
         <div class="panel-heading"><h4>Preferences</h4></div>
         <div class="panel-body">
           <form class="form-preferences">
@@ -15,35 +15,76 @@
               <label for="allowedDiet">Diet</label>
               <select id="allowedDiet" 
                       class="form-control" 
-                      ng-options="diet for diet in attributes['allowedDiet[]']" 
-                      ng-model="preferences.diet">
+                      ng-model="preferences['allowedDiet[]']"
+                      ng-change="getRecipes(preferences)">
                 <option value="">All</option>
+                <option value="388^Lacto vegetarian">Lacto vegetarian</option>
+                <option value="Ovo vegetarian">Ovo vegetarian</option>
+                <option value="390^Pescetarian">Pescetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Vegetarian">Vegetarian</option>
               </select>
             </div>
             <div class="form-group">
               <label for="allowedCuisine">Cuisine</label>
               <select id="allowedCuisine" 
                       class="form-control" 
-                      ng-options="cuisine for cuisine in attributes['allowedCuisine[]']" 
-                      ng-model="preferences.cuisine">
+                      ng-model="preferences['allowedCuisine[]']"
+                      ng-change="getRecipes(preferences)">
                 <option value="">All</option>
+                <option value="American">American</option>
+                <option value="Asian">Asian</option>
+                <option value="Barbecue">Barbecue</option>
+                <option value="Cajun & Creole">Cajun & Creole</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Cuban">Cuban</option>
+                <option value="English">English</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Greek">Greek</option>
+                <option value="Hawaiin">Hawaiin</option>
+                <option value="Hungarian">Hungarian</option>
+                <option value="Indian">Indian</option>
+                <option value="Irish">Irish</option>
+                <option value="Italian">Italian</option>
+                <option value="Mediterranean">Mediterranean</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Moroccan">Moroccan</option>
+                <option value="Southern & Soul Food">Southern & Soul Food</option>
+                <option value="Southwestern">Southwestern</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Swedish">Swedish</option>
+                <option value="Thai">Thai</option>
               </select>
             </div>
             <div class="form-group">
               <label for="allowedCourse">Course</label>
               <select id="allowedCourse" 
                       class="form-control" 
-                      ng-options="course for course in attributes['allowedCourse[]']" 
-                      ng-model="preferences.course">
+                      ng-model="preferences['allowedCourse[]']"
+                      ng-change="getRecipes(preferences)">
                 <option value="">All</option>
+                <option value="course^course-Appetizers">Appetizers</option>
+                <option value="course^course-Beverages">Beverages</option>
+                <option value="course^course-Breads">Breads</option>
+                <option value="course^course-Breakfast and Brunch">Breakfast and Brunch</option>
+                <option value="course^course-Cocktails">Cocktails</option>
+                <option value="course^course-Condiments and Sauces">Condiments and Sauces</option>
+                <option value="course^course-Desserts">Desserts</option>
+                <option value="course^course-Lunch and Snacks">Lunch and Snacks</option>
+                <option value="course^course-Main Dishes">Main Dishes</option>
+                <option value="course^course-Salads">Salads</option>
+                <option value="course^course-Side Dishes">Side Dishes</option>
+                <option value="course^course-Soups">Soups</option>
               </select>
             </div>
           </form>
           <button type="button" 
-                  class="btn btn-info" 
+                  class="btn btn-info pull-left" 
                   ng-show="isLoggedIn()" 
                   ng-click="savePreferences()">Save
           </button>
+          <p class="results-count text-muted pull-right">{{recipes.length}} results</p>
         </div>
       </div>
     </div>
