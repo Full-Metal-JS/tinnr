@@ -1,14 +1,19 @@
 angular.module('tinnr.meals', [])
-  .controller('MealsController', function ($scope, Meals) {
-    $scope.meals = Meals.list;
+  .controller('MealsController', ['$scope', 'Meals', function ($scope, Meals) {
+    $scope.cols = 4;
+    $scope.meals = [];
+    $scope.offsets = 0;
 
-  	$scope.getMeals = function () {
-  		Meal.getAll()
-  			.then(function (data) {
-  				$scope.meals = data;
-  			})
-  			.catch(function (error) {
-  				console.error('Error fetching meals: ', error);
-  			});
-  	}
-  });
+    $scope.getMeals = function() {
+      Meals.getMeals()
+        .then(function (res) {
+          $scope.offsets = $scope.cols - (res.data.length % $scope.cols);
+          $scope.meals = _.chunk(res.data, $scope.cols);
+        })
+        .catch(function (error) {
+          console.log('Error fetching meals', error);
+        });
+    };
+
+    $scope.getMeals();
+  }]);

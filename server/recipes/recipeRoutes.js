@@ -1,5 +1,6 @@
 var recipeController = require('./recipeController.js');
 
 module.exports = function(app) {
-  app.get('/', recipeController.getAll);
+  app.get('/', recipeController.getRecipes);
+  app.post('/save', recipeController.saveRecipe);
 };

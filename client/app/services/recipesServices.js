@@ -1,9 +1,12 @@
 angular.module('tinnr.recipesServices', [])
-  .factory('Recipes', function($http) {
-    var getAll = function () {
+  .factory('Recipes', ['$http', function($http) {
+    var recipes = {};
+
+    recipes.getRecipes = function (params) {
       return $http({
         method: 'GET',
-        url: '/api/recipes'
+        url: '/api/recipes',
+        params: params
       })
       .then(function (res) {
         return res.data;
@@ -12,8 +15,19 @@ angular.module('tinnr.recipesServices', [])
       });
     };
 
-    return {
-      getAll: getAll
+    recipes.saveRecipe = function (recipe) {
+      return $http({
+        method: 'POST',
+        url: '/api/recipes/save',
+        data: recipe
+      })
+      .then(function (res) {
+        return res.data;
+      }, function (res) {
+        console.error('Error: ', res);
+      });
     };
-  });
+
+    return recipes;
+  }]);
 

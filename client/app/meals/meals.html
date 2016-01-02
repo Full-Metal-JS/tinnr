@@ -1,22 +1,32 @@
 <div class="container-fluid main">
   <h1>My Meals</h1>
-    <div class="row meal" ng-repeat="meal in meals">
-        <div class="col-sm-3">
-            <a href="http://www.seriouseats.com/recipes/2013/06/lobster-bacon-burger-recipe.html">
-                <img class="thumbnail" ng-src="{{meal.imageUrls[0]}}" alt="{{meal.title}}">
-            </a>
+    <div class="row row-flex" ng-repeat="row in meals">
+        <div class="col-xs-6 col-md-3 meal" ng-repeat="meal in row">
+          <div class="thumbnail">
+            <img ng-src="{{meal.imageUrlsBySize[90]}}" alt="{{meal.recipeName}}">
+            <div class="caption">
+              <h4>{{meal.recipeName}}</h4>
+              <p class="text-muted">Ready in: {{meal.totalTimeInSeconds / 60}} mins</p>
+              <button type="button" 
+                      class="btn btn-default btn-ingredients" 
+                      ng-click="isCollapsed = !isCollapsed">
+                Ingredients
+              </button>
+              <div uib-collapse="isCollapsed" ng-init="isCollapsed = true">
+                <ol>
+                  <li ng-repeat="ingredient in meal.ingredients">
+                    <p>{{ingredient}}</p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-9">
-            <a class="meal-heading" href="http://www.seriouseats.com/recipes/2013/06/lobster-bacon-burger-recipe.html">{{meal.title}}</a>
-            <p class="text-muted">Ready in: {{meal.readyInMinutes}} mins</p>
-            <!-- <p>{{meal.text | limitTo: 700}} <a class="read-more" href="meal.url" ng-show="meal.text.length < 700">Read more</a></p> -->
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
-        </div>
+        <div class="col-xs-6 col-md-offset-{{offsets}}" ng-if="$index < (cols - 1)"></div>
     </div>
     <div class="row" ng-show="meals.length === 0">
-        <div class="alert alert-info" role="alert">Select some recipes to get started.</div>
-        <a class="btn btn-danger btn-md" href="#" ui-sref="recipes" role="button">Get Started</a>
+      <div class="alert alert-info" role="alert">Select some recipes to get started.</div>
+      <a class="btn btn-danger btn-md" href="#" ui-sref="recipes" role="button">Get Started</a>
     </div>
   </div>
 </div>
