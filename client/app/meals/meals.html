@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-6 col-md-offset-{{offsets}}" ng-if="$index < (cols - 1)"></div>
+        <div class="col-xs-6 col-md-offset-{{offsets}}" ng-if="$last"></div>
     </div>
     <div class="row" ng-show="meals.length === 0">
       <div class="alert alert-info" role="alert">Select some recipes to get started.</div>
