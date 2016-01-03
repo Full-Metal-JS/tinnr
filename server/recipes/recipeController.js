@@ -24,12 +24,12 @@ module.exports = {
       });
     } else {
       res.status(200);
-      res.json(JSON.stringify(db)); 
+      res.json(JSON.stringify(db));
     }
   },
   saveRecipe: function(req, res, next) {
     var id = req.body.id;
-    
+
     var findRecipe = Q.nbind(Recipe.findOne, Recipe);
     findRecipe({id: id})
       .then(function (recipe) {
@@ -37,10 +37,22 @@ module.exports = {
         // to keep track of popularity
         if (recipe) {
           recipe.numberOfSaves++;
-          recipe.save();
+          recipe.save()
+            .then(function() {
+              res.status(200).send();
+            })
+            .catch(function(err) {
+              res.status(400).send();
+            });
         } else {
           var newRecipe = new Recipe(req.body);
-          return newRecipe.save();
+          newRecipe.save()
+            .then(function() {
+              res.status(200).send();
+            })
+            .catch(function(err) {
+              res.status(400).send();
+            });
         }
       });
   }
