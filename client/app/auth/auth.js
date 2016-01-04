@@ -19,7 +19,7 @@ angular.module('tinnr.auth', [])
     $scope.signup = function () {
       Auth.signup($scope.user)
         .then(function (token) {
-          User.data.password = undefined;
+          User.data.password = null;
           $window.localStorage.setItem('com.tinnr', token);
           $state.go('meals');
         })
