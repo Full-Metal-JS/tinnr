@@ -66,7 +66,7 @@ gulp.task('build', function(cb) {
 });
 
 gulp.task('eslint', function() {
-  return gulp.src(['**/*.js', '!server/data.js', '!node_modules/**/*.js', '!client/lib/**/*.js'])
+  return gulp.src(['**/*.js', '!server/data.js', '!server/search.js', '!test/*.js', '!node_modules/**/*.js', '!client/lib/**/*.js'])
   .pipe(eslint({
     fix: true
   }))
