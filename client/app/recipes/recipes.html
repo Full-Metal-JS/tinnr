@@ -95,7 +95,9 @@
       <div class="thumbnail recipe-card">
         <img ng-src="{{recipe.imageUrlsBySize[90]}}" alt="{{recipe.recipeName}}">
         <div class="caption">
-          <h4>{{recipe.recipeName}}</h4>
+          <a href="http://www.yummly.com/recipe/external/{{recipe.id}}" target="_new">
+            <h4>{{recipe.recipeName}}</h4>
+          </a>
           <p class="text-muted">Ready in: {{recipe.totalTimeInSeconds / 60}} mins</p>
           <p class="btns-recipe">
             <a class="btn btn-primary" ng-click="nextRecipe()" role="button">No</a> 
