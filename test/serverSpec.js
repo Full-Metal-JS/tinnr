@@ -7,7 +7,12 @@ var User = require('../server/user/userModel.js');
 describe('', function() {
   var req = request.defaults();
 
+  beforeEach(function() {
+
+  });
+
   describe('Server route: /api/recipes', function() {
+
     it('Responds with all recipes', function() {
       var options = {
         'method': 'GET',

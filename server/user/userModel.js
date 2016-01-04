@@ -4,27 +4,27 @@ var Q = require('q');
 var SALT = 10;
 
 var UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  salt: String,
-  savedRecipes: [],
-  dietPreferences: {
-    type: Object,
-    default: {}
-  }
+    username: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      required: true
+    },
+    salt: String,
+    savedRecipes: [],
+    dietPreferences: {
+      type: Object,
+      default: {}
+    }
 });
 
-UserSchema.methods.checkPassword = function(password) {
+UserSchema.methods.checkPassword = function (password) {
   var defer = Q.defer();
   var savedPW = this.password;
-  bcrypt.compare(password, savedPW, function(err, isMatch) {
+  bcrypt.compare(password, savedPW, function (err, isMatch) {
     if (err) {
       defer.reject(err);
     } else {
@@ -32,22 +32,22 @@ UserSchema.methods.checkPassword = function(password) {
     }
   });
   return defer.promise;
-};
+}
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
   var user = this;
 
   if (!user.isModified('password')) {
     return next();
   }
 
-  bcrypt.genSalt(SALT, function(err, salt) {
+  bcrypt.genSalt(SALT, function (err, salt) {
     if (err) {
       return next(err);
     }
-    bcrypt.hash(user.password, salt, function(error, hash) {
-      if (error) {
-        return next(error);
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) {
+        return next(err);
       }
 
       user.password = hash;
