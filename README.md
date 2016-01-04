@@ -23,11 +23,11 @@ mongod --dbpath <path>
 
 ## Tests
 
-Currently, we have a test for our server side inside our test foler.
+Currently, we have a test for our server side inside our test folder.
 
 ## File Structure
 
-We separated our files into 3 different folders: Client, Server, and Tests. Here is a diagram for our file structure.
+We separated our files into 3 different folders: Client, Server, and Tests. Within each of these folders, we split our code up into as many files as we could in order to modularize it.
 
 ## Choice of Technologies
 
@@ -52,11 +52,17 @@ We used Yummly's API for our recipes.
 - Swiping for recipes
 - Compile all saved recipe ingredients to make shopping list
 - Show number of user favorites on saved recipes (We already iterate the numberOfSaves in the recipe Schema)
-- Refactor to SQL database for larger production scale
+- Refactor to a SQL database for larger production scale
 - Filter ingredients
 
 ## Git Workflow
 
 Please refer to the CONTRIBUTING.md file to see our git workflow.
+
+## Contributors
+- Elliot Chi ([elliotschi](https://github.com/elliotschi))
+- Peter Kaiser ([pkaiserui](https://github.com/pkaiserui))
+- Ian Bari ([ibari](https://github.com/ibari))
+- Sean Gibson ([seanagibson](https://github.com/seanagibson))
 
 MKS Greenfield Project
