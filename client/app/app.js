@@ -67,6 +67,8 @@ angular.module('tinnr', [
   $rootScope.$state = $state;
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    $rootScope.isNavbarCollapsed = true;
+
     if (toState && toState.authenticate && !Auth.isAuth()) {
       event.preventDefault();
       $state.go('signin');
