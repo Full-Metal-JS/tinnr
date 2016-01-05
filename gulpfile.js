@@ -13,8 +13,8 @@ var paths = {
   // all our client app js files, not including 3rd party js files
   scripts: ['client/app/**/*.js'],
   html: ['client/app/**/*.html', 'client/index.html'],
-  styles: ['client/scss/**/*.scss'],
-  assets: ['client/img/**/*'],
+  styles: ['client/assets/scss/**/*.scss'],
+  assets: ['client/assets/**'],
   test: ['specs/**/*.js']
 };
 
@@ -23,10 +23,9 @@ gulp.task('clean', function(cb) {
   rimraf('./client/build', cb);
 });
 
-// Copies everything in the client folder except templates, Sass, and JS
 gulp.task('copy', function() {
   return gulp.src(paths.assets)
-    .pipe(gulp.dest('client/build/assets/img'));
+    .pipe(gulp.dest('client/build/assets'));
 });
 
 gulp.task('build-css', function() {
@@ -77,5 +76,5 @@ gulp.task('eslint', function() {
 gulp.task('default', ['build'], function() {
   // gulp.watch('client/app/**/*.js', ['jshint']);
   gulp.watch('client/app/**/*.js', ['build-js']);
-  gulp.watch('client/scss/**/*.scss', ['build-css']);
+  gulp.watch('client/assets/scss/**/*.scss', ['build-css']);
 });
