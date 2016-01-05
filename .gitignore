@@ -3,6 +3,7 @@
 .LSOverride
 azure.err
 iisnode.yml
+server/recipes/apiKeys.js
 
 # Icon must ends with two \r.
 Icon

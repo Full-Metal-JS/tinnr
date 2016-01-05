@@ -4,12 +4,13 @@ var Recipe = require('./recipeModel.js');
 var request = require('request');
 var url = require('url');
 var Q = require('q');
+var apiInfo = require('./apiKeys.js');
 
 module.exports = {
   getRecipes: function(req, res, next) {
     // insert api id and api password
-    var YUMMLY_API_ID = process.env.YUMMLY_API_ID;
-    var YUMMLY_API_KEY = process.env.YUMMLY_API_KEY;
+    var YUMMLY_API_ID = process.env.YUMMLY_API_ID || apiInfo.API_ID;
+    var YUMMLY_API_KEY = process.env.YUMMLY_API_KEY || apiInfo.API_KEY;
     var params = url.parse(req.url).query;
 
     if (url.parse(req.url).query) {
