@@ -4,7 +4,6 @@ angular.module('tinnr.recipes', [])
     $scope.recipes = [];
     $scope.preferences = User.data.preferences;
     $scope.isLoggedIn = Auth.isAuth;
-    $scope.alerts = [];
 
     $scope.getRecipes = function (params) {
       Recipes.getRecipes(params)
@@ -42,10 +41,6 @@ angular.module('tinnr.recipes', [])
           $scope.alerts.push({type: 'danger', msg: 'Error saving preferences.'});
           console.error('Error saving preferences: ', error);  
         });
-    };
-
-    $scope.closeAlert = function (index) {
-      $scope.alerts.splice(index, 1);
     };
 
     $scope.getRecipes($scope.preferences);
