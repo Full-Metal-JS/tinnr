@@ -1,9 +1,5 @@
 <div class="container-fluid main">
-  <uib-alert ng-repeat="alert in alerts" 
-             type="{{alert.type}}" 
-             close="closeAlert($index)"
-             dismiss-on-timeout="2000">{{alert.msg}}
-  </uib-alert>
+  <alerts></alerts>
   <h1>Recipes</h1>
   <div class="row row-flex recipe" ng-repeat="recipe in recipes" ng-hide="!isCurrentRecipe($index)">
     <div class="col-md-4">
