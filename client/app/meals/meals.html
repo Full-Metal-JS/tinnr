@@ -3,9 +3,13 @@
     <div class="row row-flex" ng-repeat="row in meals">
         <div class="col-xs-6 col-md-3 meal" ng-repeat="meal in row">
           <div class="thumbnail">
-            <img ng-src="{{meal.imageUrlsBySize[90]}}" alt="{{meal.recipeName}}">
+            <a href="http://www.yummly.com/recipe/external/{{meal.id}}" target="_new">
+              <img ng-src="{{meal.imageUrlsBySize[90]}}" alt="{{meal.recipeName}}">
+            </a>
             <div class="caption">
-              <h4>{{meal.recipeName}}</h4>
+              <a href="http://www.yummly.com/recipe/external/{{meal.id}}" target="_new">
+                <h4>{{meal.recipeName}}</h4>
+              </a>
               <p class="text-muted">Ready in: {{meal.totalTimeInSeconds / 60}} mins</p>
               <button type="button" 
                       class="btn btn-default btn-ingredients" 

@@ -1,5 +1,5 @@
 @import "settings";
-@import "../lib/bootstrap-sass/assets/stylesheets/bootstrap";   
+@import "../../lib/bootstrap-sass/assets/stylesheets/bootstrap";  
 @import "scaffolding";
 @import "navbar";  
 @import "jumbotron"; 
@@ -10,3 +10,4 @@
 @import "panels"; 
 @import "thumbnails"; 
 @import "meals"; 
+@import "font-awesome";

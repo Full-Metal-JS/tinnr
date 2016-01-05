@@ -19,6 +19,7 @@
     "angular-ui-router": "~0.2.15",
     "angular-bootstrap": "~0.14.3",
     "bootstrap-sass": "~3.3.6",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "font-awesome": "fontawesome#~4.5.0"
   }
 }

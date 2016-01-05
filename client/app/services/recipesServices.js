@@ -18,7 +18,7 @@ angular.module('tinnr.recipesServices', [])
     recipes.saveRecipe = function (recipe) {
       return $http({
         method: 'POST',
-        url: '/api/recipes/save',
+        url: '/api/recipes',
         data: recipe
       })
       .then(function (res) {
@@ -30,4 +30,3 @@ angular.module('tinnr.recipesServices', [])
 
     return recipes;
   }]);
-

@@ -1,14 +1,14 @@
 var jwt = require('jwt-simple');
 
 module.exports = {
-  logError: function (err, req, res, next) {
+  logError: function(err, req, res, next) {
     console.error(err.stack);
     next(err);
   },
-  handleError: function (err, req, res) {
+  handleError: function(err, req, res) {
     res.status(500).send({error: err.message});
   },
-  decode: function (req, res, next) {
+  decode: function(req, res, next) {
     var token = req.headers['x-access-token'];
     var user;
 
@@ -19,7 +19,7 @@ module.exports = {
       user = jwt.decode(token, 'secret');
       req.user = user;
       next();
-    } catch(error) {
+    } catch (error) {
       return next(error);
     }
   }
