@@ -3,9 +3,10 @@ angular.module('tinnr.navbarDirectives', [])
     return {
       restrict: 'E',
       templateUrl: 'app/partials/_navbar.html',
-      controller: function($scope) {
+      controller: function($scope, $rootScope) {
         $scope.isLoggedIn = Auth.isAuth;
         $scope.signout = Auth.signout;
+        $rootScope.isNavbarCollapsed = true;
       }
     };
   }]);
