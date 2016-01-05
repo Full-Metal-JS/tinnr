@@ -8,6 +8,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var nodemon   = require('gulp-nodemon');
 var uglify = require('gulp-uglify');
 var sequence = require('run-sequence');
+var mocha = require('gulp-mocha');
 
 var paths = {
   // all our client app js files, not including 3rd party js files
@@ -42,6 +43,18 @@ gulp.task('build-js', function() {
       .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('client/build/assets/js'));
+});
+
+gulp.task('test', function() {
+  //nodemon({script: 'server/server.js', ignore: 'node_modules/**/*.js'});
+  return gulp.src(['test/*.js'], {read: false})
+    .pipe(mocha({
+      reporter: 'spec',
+      timeout: 5000,
+      globals: {
+        expect: require('chai').expect
+      }
+    }));
 });
 
 // any changes to client side code will automagically refresh your page
