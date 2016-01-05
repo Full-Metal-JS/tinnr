@@ -2,6 +2,8 @@
 What's for dinner?
 Tinnr, it's for dinner.
 
+[Tinnr](www.tinnr.com)
+
 ## Introduction
 
 Tinnr is a project dedicated to offering users with many different recipe choices. Our goal is for people to explore new recipes that fit any occasion.
