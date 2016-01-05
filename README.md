@@ -55,6 +55,7 @@ We used Yummly's API for our recipes.
 - Refactor to a SQL database for larger production scale
 - Implement search box for query string in api call
 - Allow user to submit included and excluded recipes
+- Display a user dashboard
 
 ## Git Workflow
 
