@@ -11,7 +11,7 @@ angular.module('tinnr.auth', [])
           $state.go('meals');
         })
         .catch(function (error) {
-          $scope.error = error;
+          $scope.alerts.push({type: 'danger', msg: error.data.error});
           console.error(error);
         });
     };
@@ -24,7 +24,7 @@ angular.module('tinnr.auth', [])
           $state.go('meals');
         })
         .catch(function (error) {
-          $scope.error = error;
+          $scope.alerts.push({type: 'danger', msg: error.data.error});
           console.error(error);
         });
     };
