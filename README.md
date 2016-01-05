@@ -53,7 +53,8 @@ We used Yummly's API for our recipes.
 - Compile all saved recipe ingredients to make shopping list
 - Show number of user favorites on saved recipes (We already iterate the numberOfSaves in the recipe Schema)
 - Refactor to a SQL database for larger production scale
-- Filter ingredients
+- Implement search box for query string in api call
+- Allow user to submit included and excluded recipes
 
 ## Git Workflow
 
