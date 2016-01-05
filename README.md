@@ -69,7 +69,7 @@ We used airbnb's es5 style guide at the following link
 ## Contributors
 - Elliot Chi ([elliotschi](https://github.com/elliotschi))
 - Peter Kaiser ([pkaiserui](https://github.com/pkaiserui))
-- Ian Bari ([ibari](https://github.com/ibari))
+- Ian B. ([ibari](https://github.com/ibari))
 - Sean Gibson ([seanagibson](https://github.com/seanagibson))
 
 MKS Greenfield Project
