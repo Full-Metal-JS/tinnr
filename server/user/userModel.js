@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-var Q = require('q');
-var SALT = 10;
+const mongoose = require('mongoose');
+mongoose.Promise = Promise;
+const bcrypt = require('bcrypt-nodejs');
+const SALT = 10;
 
-var UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -22,34 +22,32 @@ var UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.checkPassword = function(password) {
-  var defer = Q.defer();
-  var savedPW = this.password;
-  bcrypt.compare(password, savedPW, function(err, isMatch) {
-    if (err) {
-      defer.reject(err);
-    } else {
-      defer.resolve(isMatch);
-    }
+  return new Promise((resolve, reject) => {
+    let savedPW = this.password;
+    bcrypt.compare(password, savedPW, (err, isMatch) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(isMatch);
+      }
+    });
   });
-  return defer.promise;
 };
 
 UserSchema.pre('save', function(next) {
-  var user = this;
-
+  let user = this;
   if (!user.isModified('password')) {
     return next();
   }
 
-  bcrypt.genSalt(SALT, function(err, salt) {
+  bcrypt.genSalt(SALT, (err, salt) => {
     if (err) {
-      return next(err);
-    }
-    bcrypt.hash(user.password, salt, function(error, hash) {
+      return next(err); 
+    } 
+    bcrypt.hash(user.password, salt, null, (error, hash) => {
       if (error) {
         return next(error);
-      }
-
+      } 
       user.password = hash;
       user.salt = salt;
       next();

@@ -1,7 +1,7 @@
-var express = require('express');
-var db = require('./db.js');
+const express = require('express');
+const db = require('./db.js');
 
-var app = express();
+let app = express();
 
 require('./config/middleware.js')(app, express);
 

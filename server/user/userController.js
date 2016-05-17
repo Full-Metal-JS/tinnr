@@ -1,26 +1,22 @@
-var User = require('./userModel.js');
-var Q = require('q');
-var jwt = require('jwt-simple');
+const User = require('./userModel.js');
+const jwt = require('jwt-simple');
+const { findIndex } = require('lodash');
 
 module.exports = {
-  signin: function(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-
-    var findUser = Q.nbind(User.findOne, User);
-    findUser({username: username})
-      .then(function(user) {
+  signin: function({ body: { username, password } }, res, next) {
+    User.findOne({username})
+      .then(user => {
         if (!user) {
           res.status(401).send({error: 'User does not exist'});
           next(new Error('User does not exist'));
         } else {
           return user.checkPassword(password)
-            .then(function(foundUser) {
+            .then(foundUser => {
               if (foundUser) {
-                var token = jwt.encode(user, 'secret');
+                let token = jwt.encode(user, 'secret');
                 res.json({
                   username: user.username,
-                  token: token,
+                  token,
                   preferences: user.dietPreferences
                 });
               } else {
@@ -30,165 +26,134 @@ module.exports = {
             });
         }
       })
-      .fail(function(error) {
-        next(error);
-      });
+      .catch(error => next(error));
   },
-  signup: function(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-    var dietPreferences = req.body.preferences;
-
-    var findOne = Q.nbind(User.findOne, User);
-
-    // check to see if user already exists
-    findOne({username: username})
-      .then(function(user) {
+  signup: function({ body: { username, password, preferences } }, res, next) {
+    User.findOne({username})
+      .then(user => {
         if (user) {
-          res.status(403).send({error: 'User already exist!'});
-          next(new Error('User already exist!'));
+          res.status(403).send({error: 'User already exists'});
+          next(new Error('User already exists!'));
         } else {
-          var newUser = {
-            username: username,
-            password: password,
-            dietPreferences: dietPreferences
+          let newUser = {
+            username,
+            password,
+            dietPreferences: preferences
           };
-          var newSignupUser = new User(newUser);
+          let newSignupUser = new User(newUser);
           return newSignupUser.save();
         }
       })
-      .then(function(user) {
-        // create token to send back for auth
-        var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+      .then(user => {
+        let token = jwt.encode(user, 'secret');
+        res.json({token});
       })
-      .fail(function(error) {
-        next(error);
-      });
+      .catch(err => next(err));
   },
   checkAuth: function(req, res, next) {
-    var token = req.headers['x-access-token'];
+    let token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('no token'));
     } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
-        .then(function(foundUser) {
+      let user = jwt.decode(token, 'secret');
+      User.findOne({username: user.username})
+        .then(foundUser => {
           if (foundUser) {
             res.status(200).send();
           } else {
             res.status(401).send();
           }
         })
-        .fail(function(error) {
-          next(error);
-        });
+        .catch(err => next(err));
     }
   },
   getSavedMeals: function(req, res, next) {
-    var token = req.headers['x-access-token'];
+    let token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('no token'));
     } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
-        .then(function(foundUser) {
+      let user = jwt.decode(token, 'secret');
+      User.findOne({username: user.username})
+        .then((foundUser) => {
           if (foundUser) {
-            var recipes = foundUser.savedRecipes;
             res.status(200);
-            res.json(recipes);
+            res.json(foundUser.savedRecipes);
           } else {
             res.status(401).send();
           }
         })
-        .fail(function(error) {
-          next(error);
-        });
+        .catch(err => next(err));
     }
   },
   saveMeal: function(req, res, next) {
-    var token = req.headers['x-access-token'];
-    var mealId = req.body;
+    let token = req.headers['x-access-token'];
+    let mealId = req.body;
 
     if (!token) {
       next(new Error('no token'));
     } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
-        .then(function(foundUser) {
-          if (foundUser && foundUser.savedRecipes.indexOf(mealId) === -1) {
+      let user = jwt.decode(token, 'secret');
+
+      User.findOne({username: user.username})
+        .then(foundUser => {
+          if (foundUser && findIndex(foundUser.savedRecipes, mealId) === -1) {
             foundUser.savedRecipes.push(mealId);
-            Q.ninvoke(foundUser, 'save')
-              .then(function() {
+            foundUser.save()
+              .then(() => res.status(200).send())
+              .catch(err => {
                 res.status(200).send();
-              })
-              .fail(function(error) {
-                res.status(400).send();
-                next(error);
-              });
-          } else {
-            res.status(401).send();
-          }
-        })
-        .fail(function(error) {
-          next(error);
-        });
-    }
-  },
-  saveDietPreferences: function(req, res, next) {
-    var token = req.headers['x-access-token'];
-    var dietPreferences = req.body.preferences;
-
-    if (!token) {
-      next(new Error('no token'));
-    } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
-        .then(function(foundUser) {
-          if (foundUser) {
-            foundUser.dietPreferences = dietPreferences;
-            Q.ninvoke(foundUser, 'save')
-              .then(function() {
-                res.status(200).send();
-              })
-              .fail(function(err) {
-                res.status(400).send();
                 next(err);
               });
           } else {
             res.status(401).send();
           }
         })
-        .fail(function(error) {
-          next(error);
-        });
+        .catch(err => next(err));
     }
   },
-  getDietPreferences: function(req, res, next) {
-    var token = req.headers['x-access-token'];
+  saveDietPreferences: function({ body: { preferences } }, res, next) {
+    let token = req.headers['x-access-token'];
 
     if (!token) {
       next(new Error('no token'));
     } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
-        .then(function(foundUser) {
+      let { username } = jwt.decode(token, 'secret');
+      User.findOne({username})
+        .then(foundUser => {
           if (foundUser) {
-            var dietPreferences = foundUser.dietPreferences;
+            foundUser.dietPreferences = preferences;
+            return foundUser.save();
+          }
+          res.status(4000).send();
+        })
+        .then(() => {
+          res.status(200).send();
+        })
+        .catch(err => {
+          res.status(400).send();
+          next(err);
+        });
+    }
+  },
+
+  getDietPreferences: function({ headers }, res, next) {
+    let token = headers['x-access-token'];
+
+    if (!token) {
+      next(new Error('no token'));
+    } else {
+      let { username } = jwt.decode(token, 'secret');
+      User.findOne({username})
+        .then(foundUser => {
+          if (foundUser) {
+            let dietPreferences = foundUser.dietPreferences;
             res.status(200);
             res.json(dietPreferences);
           } else {
             res.status(401).send();
           }
         })
-        .fail(function(error) {
-          next(error);
-        });
+        .catch(err => next(err));
     }
   }
 };
