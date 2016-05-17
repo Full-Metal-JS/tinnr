@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
+'use strict';
 
-var port = process.env.MONGOLAB_URI || 'mongodb://localhost/tinnr';
+const mongoose = require('mongoose');
+mongoose.Promise = Promise;
 
-var db = mongoose.connect(port);
+const port = process.env.MONGOLAB_URI || 'mongodb://localhost/tinnr';
+const db = mongoose.connect(port);
 
 module.exports = db;

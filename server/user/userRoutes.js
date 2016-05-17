@@ -1,11 +1,21 @@
-var userController = require('./userController.js');
+'use strict';
+
+const { 
+  signin, 
+  signup, 
+  checkAuth, 
+  getSavedMeals, 
+  saveMeal, 
+  saveDietPreferences, 
+  getDietPreferences
+} = require('./userController.js');
 
 module.exports = function(app) {
-  app.post('/signin', userController.signin);
-  app.post('/signup', userController.signup);
-  app.post('/signedin', userController.checkAuth);
-  app.get('/meals', userController.getSavedMeals);
-  app.post('/meals', userController.saveMeal);
-  app.post('/preferences', userController.saveDietPreferences);
-  app.get('/preferences', userController.getDietPreferences);
+  app.post('/signin', signin);
+  app.post('/signup', signup);
+  app.post('/signedin', checkAuth);
+  app.get('/meals', getSavedMeals);
+  app.post('/meals', saveMeal);
+  app.post('/preferences', saveDietPreferences);
+  app.get('/preferences', getDietPreferences);
 };
