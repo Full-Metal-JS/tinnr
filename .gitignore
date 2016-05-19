@@ -30,3 +30,7 @@ client/lib
 
 #Build 
 build
+
+#mobile
+tinnr/node_modules
+tinnr/platforms
