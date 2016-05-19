@@ -1,11 +1,12 @@
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
-var path = require('path');
-var utils = require('./utils.js');
+'use strict';
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const path = require('path');
+const { logError, handleError } = require('./utils.js');
 
 module.exports = function(app, express) {
-  var usersRouter = express.Router();
-  var recipesRouter = express.Router();
+  let usersRouter = express.Router();
+  let recipesRouter = express.Router();
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
@@ -14,13 +15,13 @@ module.exports = function(app, express) {
 
   app.use('/api/users', usersRouter);
   app.use('/api/recipes', recipesRouter);
-  app.use('*', function(req, res) {
+  app.use('*', (req, res) => {
     res.status(404).send('404: Page not found');
   });
 
-  require('../user/userRoutes.js')(usersRouter);
-  require('../recipes/recipeRoutes.js')(recipesRouter);
+  require('../user/userRoutes')(usersRouter);
+  require('../recipes/recipeRoutes')(recipesRouter);
 
-  app.use(utils.logError);
-  app.use(utils.handleError);
+  app.use(logError);
+  app.use(handleError);
 };

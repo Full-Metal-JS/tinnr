@@ -1,3 +1,4 @@
+'use strict';
 let app = require('./server-config.js');
 
 const PORT = process.env.PORT || 3000;
