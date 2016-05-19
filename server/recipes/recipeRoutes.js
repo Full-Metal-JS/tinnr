@@ -1,6 +1,10 @@
-var recipeController = require('./recipeController.js');
+'use strict'
+const { 
+  getRecipes, 
+  saveRecipe 
+} = require('./recipeController.js');
 
 module.exports = function(app) {
-  app.get('/', recipeController.getRecipes);
-  app.post('/', recipeController.saveRecipe);
+  app.get('/', getRecipes);
+  app.post('/', saveRecipe);
 };

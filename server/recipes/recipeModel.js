@@ -1,6 +1,8 @@
-var mongoose = require('mongoose');
+'use strict';
+const mongoose = require('mongoose');
+mongoose.Promise = Promise;
 
-var RecipeSchema = new mongoose.Schema({
+const RecipeSchema = new mongoose.Schema({
   imageUrlsBySize: {
     type: Object,
     required: true
