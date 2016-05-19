@@ -1,3 +1,4 @@
+'use strict';
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 const bcrypt = require('bcrypt-nodejs');

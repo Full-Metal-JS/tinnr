@@ -1,3 +1,4 @@
+'use strict';
 const User = require('./userModel.js');
 const jwt = require('jwt-simple');
 const { findIndex } = require('lodash');
